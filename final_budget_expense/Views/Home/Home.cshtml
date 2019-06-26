@@ -1,0 +1,142 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+<head>
+    <title>HomePage</title>
+</head>
+<div id="background">
+</div>
+<div id="body">
+    <div>
+        <div class="container col-md-6 cold-md-offset-4">
+            <div class="col-md-6 col-md-offset-3">
+                <div>
+                    <row>
+                        <label>
+                            Date of Transaction
+                        </label>
+                    </row>
+                    <form>
+                        <row>
+                            <label>
+                                Type of Transaction
+                            </label>
+                        </row>
+                        <div class="expense_type" style="display:none">
+                            <row>
+                                <label>
+                                    Category of Expense
+                                </label>
+                            </row>
+                        </div>
+
+                    </form>
+                    <row>
+                        <div>
+                            <label>
+                                Description
+                            </label>
+                        </div>
+                    </row>
+                    <row>
+                        <label id="about_label">
+                            Amount
+                        </label>
+                    </row>
+                </div>
+            </div>
+
+            <div class="col-md-2 input_forms col-md-offset-1">
+                <div>
+                    <row><input id="date_selection" type="date" required></row>
+                </div>
+                <div>
+                    <row>
+                        <select id="budget_name" onchange="showCategories()" name="transaction type" required>
+                            <option value="income">Income</option>
+                            <option value="Expense">Expense</option>
+                        </select>
+                    </row>
+                </div>
+                <row>
+                    <select class="expense_type" style="display:none" name="category of expense">
+                        <option value="shopping">Shopping</option>
+                        <option value="travel">Travel</option>
+                        <option value="food and beverages">Food and Beverages</option>
+                        <option value="other"> Other </option>
+                    </select>
+                </row>
+                <div>
+                    <row>
+                        <textarea placeholder="Please input description of transaction" required>
+</textarea>
+                    </row>
+                </div>
+                <div>
+                    <row>
+                        <input type="text" name="Numerical amount" required />
+                    </row>
+                </div>
+            </div>
+        </div>
+            <div>
+                <input id="submit_button" type="submit" value="Submit" required />
+                <button id="reset_button" type="reset" value="Reset">Cancel</button>
+            </div>
+
+    </div>
+    </div>
+<!-- <div class="container col-md-6">
+        <label>
+            <div id="transaction_label">
+                Type of Transaction
+            </div>
+            <select id="budget_name" onchange="showCategories()" name="transaction type" required>
+                <option value="income">Income</option>
+                <option value="Expense">Expense</option>
+            </select>
+        </label>
+        </form>
+        <div id="Expense_Category" style="display:none">
+            <label>
+                <div id="expense_label">
+                    Category of Expense
+                </div>
+                <select id="expense_name" name="category of expense" required>
+                    <option value="shopping">Shopping</option>
+                    <option value="travel">Travel</option>
+                    <option value="food and beverages">Food and Beverages</option>
+                    <option value="other"> Other </option>
+                </select>
+            </label>
+        </div>
+        <div>
+            <label id="description_label">
+                Description
+            </label>
+            <textarea placeholder="Please input description of transaction" required>
+</textarea>
+
+        </div>
+        <div>
+            <label>
+                Amount
+                <input type="text" name="Numerical amount" required />
+            </label>
+        </div>
+        <div>
+            <input id="submit_button" type="submit" value="Submit" required />
+        </div>
+        <div>
+            <button id="reset_button" type="reset" value="Reset">Cancel</button>
+        </div>
+        </form>
+        <br />
+        <table style=100%>
+            <tr>
+                <th>Incomes</th>
+                <th>Expenses</th>
+            </tr>
+        </table>
+</body>
+        --->

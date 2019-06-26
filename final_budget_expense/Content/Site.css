@@ -1,0 +1,84 @@
+﻿/*body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}*/
+
+/* Set padding to keep content from hitting the edges */
+/*.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}*/
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+/*.dl-horizontal dt {
+    white-space: normal;
+}*/
+
+/* Set width on the form input elements since they're 100% wide by default */
+/*input,
+select,
+textarea {
+    max-width: 280px;
+}*/
+#background{
+    background-color: white; 
+}
+#body{
+    border: thick dotted grey;
+    margin-right: 10%;
+    margin-left: 10%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    padding-bottom: 20%; 
+    background-color: lightyellow; 
+}
+#submit_button {
+    background-color: white;
+    color: green;
+    border: 2px solid green;
+    text-align: center;
+}
+ #submit_button:hover {
+        background-color: green;
+        color: white;
+        text-align: center;
+    }
+#reset_button {
+    background-color: white;
+    color: red;
+    border: 2px solid red;
+    text-align: center;
+
+}
+#reset_button:hover {
+        background-color: red;
+        color: white;
+        text-align: center;
+}
+input[type=date]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+}
+label{
+    color: grey;
+}
+#about_label{
+    padding-top: 10%;
+}
+.input_forms{
+    padding-top: 1%;
+}
+.btnmove{
+
+    padding-top: 15%;
+    text-align: right;
+    padding-right: 35%;
+
+}
+
+
+/*.space{
+    padding-left: 30%;
+}*/
