@@ -32,6 +32,7 @@ textarea {
     margin-top: 10%;
     margin-bottom: 10%;
     padding-bottom: 20%; 
+    padding-top: 5%;
     background-color: lightyellow; 
 }
 #submit_button {
@@ -50,7 +51,6 @@ textarea {
     color: red;
     border: 2px solid red;
     text-align: center;
-
 }
 #reset_button:hover {
         background-color: red;
@@ -65,20 +65,8 @@ label{
     color: grey;
 }
 #about_label{
-    padding-top: 10%;
+    padding-top: 6%;
 }
 .input_forms{
     padding-top: 1%;
 }
-.btnmove{
-
-    padding-top: 15%;
-    text-align: right;
-    padding-right: 35%;
-
-}
-
-
-/*.space{
-    padding-left: 30%;
-}*/

@@ -1,15 +1,13 @@
 ﻿@{
     ViewData["Title"] = "Home";
 }
-<head>
-    <title>HomePage</title>
-</head>
+
 <div id="background">
 </div>
 <div id="body">
     <div>
-        <div class="container col-md-6 cold-md-offset-4">
-            <div class="col-md-6 col-md-offset-3">
+        <div>
+            <div class="col-md-6 justify-content-center col-md-push-3">
                 <div>
                     <row>
                         <label>
@@ -46,7 +44,7 @@
                 </div>
             </div>
 
-            <div class="col-md-2 input_forms col-md-offset-1">
+            <div class="col-md-6 justify-content-center">
                 <div>
                     <row><input id="date_selection" type="date" required></row>
                 </div>
@@ -73,19 +71,19 @@
                     </row>
                 </div>
                 <div>
-                    <row>
-                        <input type="text" name="Numerical amount" required />
+                    <row><span id="dollar_sign" style='color:green'>$</span>
+                        <input id="amount_input" type="text" name="Numerical amount" required />
                     </row>
+                </div>
+                <div>
+                    <input id="submit_button" type="submit" value="Submit" required />
+                    <button id="reset_button" type="reset" value="Reset">Cancel</button>
                 </div>
             </div>
         </div>
-            <div>
-                <input id="submit_button" type="submit" value="Submit" required />
-                <button id="reset_button" type="reset" value="Reset">Cancel</button>
-            </div>
+    </div>
+</div>
 
-    </div>
-    </div>
 <!-- <div class="container col-md-6">
         <label>
             <div id="transaction_label">
