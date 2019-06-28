@@ -25,7 +25,12 @@ namespace budget_expense.Controllers
 
             return View();
         }
+        public ActionResult CreateAccount()
+        {
 
+            return View();
+
+        }
 
         public ActionResult Contact()
         {
