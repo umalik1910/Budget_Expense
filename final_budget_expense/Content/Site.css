@@ -22,9 +22,7 @@ select,
 textarea {
     max-width: 280px;
 }*/
-#background{
-    background-color: white; 
-}
+
 #body{
     border: thick dotted grey;
     margin-right: 10%;
@@ -69,4 +67,27 @@ label{
 }
 .input_forms{
     padding-top: 1%;
+}
+#create_button {
+    background-color: white;
+    color: blue;
+    border: 2px solid blue;
+    text-align: center;
+}
+#create_button:hover {
+    background-color: blue;
+    color: white;
+    text-align: center;
+}
+#login_pic {
+    border: 10px solid black;
+    border-radius: 50%; 
+    height: 100px; 
+ }
+#login_pic_placement{
+   
+    text-align: center; 
+}
+#middle_place{
+    text-align: center; 
 }

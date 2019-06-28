@@ -2,12 +2,11 @@
     ViewData["Title"] = "Home";
 }
 
-<div id="background">
-</div>
+
 <div id="body">
     <div>
         <div>
-            <div class="col-md-6 justify-content-center col-md-push-3">
+            <div class="col-md-6 col-md-push-3">
                 <div>
                     <row>
                         <label>
@@ -44,7 +43,7 @@
                 </div>
             </div>
 
-            <div class="col-md-6 justify-content-center">
+            <div class="col-md-6">
                 <div>
                     <row><input id="date_selection" type="date" required></row>
                 </div>
@@ -71,7 +70,10 @@
                     </row>
                 </div>
                 <div>
-                    <row><span id="dollar_sign" style='color:green'>$</span>
+                    <row>
+                        <span id="dollar_sign">
+                            <span style='color:green'>$</span>
+                        </span>
                         <input id="amount_input" type="text" name="Numerical amount" required />
                     </row>
                 </div>
