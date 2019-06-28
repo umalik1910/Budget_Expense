@@ -28,11 +28,11 @@ function showCurrentDate() {
     return today;
 
 }
+document.getElementById("date_selection").onclick = callCurrentDate; 
 
-
-document.getElementById("date_selection").onclick = function () {
+function callCurrentDate () {
     console.log("current date : " + showCurrentDate());
     var input = document.getElementById("date_selection");
     //input.setAttribute("max", showCurrentDate());
-    input.max = showCurrentDate(); 
+    input.max = showCurrentDate();  
 };
