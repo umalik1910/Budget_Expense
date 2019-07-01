@@ -36,3 +36,13 @@ function callCurrentDate () {
     //input.setAttribute("max", showCurrentDate());
     input.max = showCurrentDate();  
 };
+
+function checkPassword() {
+    console.log("hello"); 
+    var password1 = document.getElementById("first_psw");
+    var password2 = document.getElementById("second_psw"); 
+    if (password1 != password2) {
+        alert("Passwords are not matching!"); 
+        return false; 
+    }
+}
