@@ -22,7 +22,9 @@ select,
 textarea {
     max-width: 280px;
 }*/
-
+*{
+    color: grey; 
+}
 #body{
     border: thick dotted grey;
     margin-right: 10%;
@@ -90,4 +92,7 @@ label{
 }
 #middle_place{
     text-align: center; 
+}
+#vertical_place{
+    padding-top: .5%;
 }
