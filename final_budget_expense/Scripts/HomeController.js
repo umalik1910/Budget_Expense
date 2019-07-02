@@ -28,21 +28,35 @@ function showCurrentDate() {
     return today;
 
 }
-document.getElementById("date_selection").onclick = callCurrentDate; 
+if (document.getElementById("date_selection") != null) {
+    document.getElementById("date_selection").onclick = callCurrentDate();
+} 
 
 function callCurrentDate () {
-    console.log("current date : " + showCurrentDate());
     var input = document.getElementById("date_selection");
-    //input.setAttribute("max", showCurrentDate());
-    input.max = showCurrentDate();  
+    if (input != null) {
+        input.setAttribute("max", showCurrentDate());
+    }
+    //input.max = showCurrentDate();  
 };
 
-function checkPassword() {
-    console.log("hello"); 
-    var password1 = document.getElementById("first_psw");
-    var password2 = document.getElementById("second_psw"); 
-    if (password1 != password2) {
-        alert("Passwords are not matching!"); 
-        return false; 
+function checkPassword(pass1, pass2) {
+    if (pass1 === "" && pass2 === "" || pass1 !== pass2) {
+        return false;
+    }
+    return true;
+};
+function submitDetails() {
+    var password1 = document.getElementById("first_psw").value;
+    var password2 = document.getElementById("second_psw").value;
+    if (password1 && password2 != null) {
+        if (checkPassword(password1, password2)) {
+            //Save
+            alert("Passwords match.");
+        } else {
+            //throw error
+            alert("Passwords are not matching or the boxes are blank!");
+        }
     }
 }
+
