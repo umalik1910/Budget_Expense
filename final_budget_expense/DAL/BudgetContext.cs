@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Data.Entity;
+using final_budget_expense.Models;
+
+namespace final_budget_expense.DAL
+{
+  
+        public class BudgetContext : DbContext
+        {
+            public BudgetContext() : base("BudgetRecordModel")
+            {
+            }
+
+            public DbSet<BudgetRecordModel> BudgetRecords { get; set; }
+            
+        }
+}

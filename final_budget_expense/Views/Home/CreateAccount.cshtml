@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "CreateAccount";
+}
+
+
+
+
+
+<div id="body">
+    <div id="middle_place">
+    <p> <b> Please fill in this form to create an account</b> </p> </div>
+    <div id="vertical_place" class="col-md-5 col-md-push-3">
+        <div>
+            <row>
+                <label for="email">First Name</label>
+            </row>
+        </div>
+        <div>
+            <row>
+                <label for="email">Last Name</label>
+            </row>
+        </div>
+        <div>
+            <row>
+                <label for="email">Username</label>
+            </row>
+        </div>
+        <div>
+            <label for="psw">Password</label>
+        </div>
+        <div>
+            <label for="psw-repeat">Confirm Password</label>
+        </div>
+        <div>
+            <label for="email">Email</label>
+        </div>
+    </div>
+    <div class="col-md-7">
+        <div>
+            <row>
+                <input type="text" placeholder="Enter Last Name" name="email" required>
+            </row>
+        </div>
+        <div>
+            <row>
+                <input type="text" placeholder="Enter First Name" name="email" required>
+            </row>
+        </div>
+        <div>
+            <row>
+                <input type="text" placeholder="Enter Username" name="email" required>
+            </row>
+        </div>
+        <div>
+            <row><input id="first_psw" type="password" placeholder="Enter Password" name="psw" required /></row>
+        </div>
+        <div>
+            <input id="second_psw" type="password" placeholder="Confirm Password" name="psw-repeat" required>
+        </div>
+            
+        <div>
+            <row>
+                <input type="text" placeholder="Enter Email" name="email" required>
+            </row>
+        </div>
+        <div>
+            <button id="reset_button" type="button" onclick="location.href='@Url.Action("SignIn", "Home")'">Cancel</button>
+            <button onclick = "submitDetails()" id="submit_button" type="submit">Sign Up</button>
+        </div>
+           
+    </div>
+
+
+</div>
+<!---
+    
+     -->

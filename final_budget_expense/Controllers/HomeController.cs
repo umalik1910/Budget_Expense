@@ -1,4 +1,5 @@
-﻿using System;
+﻿using final_budget_expense.Models;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -11,12 +12,15 @@ namespace budget_expense.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            BudgetExpenseEntities DB = new BudgetExpenseEntities();
+            List<BudgetRecord> budgetRecord = DB.BudgetRecords.ToList();
+            return View(budgetRecord);
+            
         }
 
         public ActionResult Home()
         {
-
+            
             return View();
 
         }
@@ -43,6 +47,13 @@ namespace budget_expense.Controllers
         {
             return View();
         }
+           
+        /*
+        public ActionResult BudgetSubmit([Bind(Include = "BudgetID, DateOfTrans, UserID, TypeOfTrans, TransDescription, Amount")])
+        {
+
+        }
+        */
 
     }
 }

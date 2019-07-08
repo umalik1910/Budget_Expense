@@ -1,0 +1,57 @@
+﻿@model IEnumerable<final_budget_expense.Models.BudgetRecord>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BudgetID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfTrans)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TypeOfTrans)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TransDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.BudgetID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DateOfTrans)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TypeOfTrans)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TransDescription)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Amount)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.BudgetID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.BudgetID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.BudgetID })
+    </td>
+</tr>
+}
+
+</table>
