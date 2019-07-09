@@ -131,6 +131,8 @@
     <Compile Include="Controllers\BudgetExpenseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />
+    <Compile Include="DAL\BudgetContext.cs" />
+    <Compile Include="DAL\UserContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
