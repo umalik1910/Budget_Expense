@@ -60,34 +60,35 @@ function submitDetails() {
     }
 }
 
-$(function ajaxClick () {
-    $("#btnPost").click(function () {
-        var budgetRecord = new Object();
-        budgetRecord.TypeOfTrans = $('txtTypeOfTrans').val();
-        budgetRecord.DateOfTrans = $('txtDateOfTrans').val();
-        budgetRecord.TransDescription = $('txtTransDescription').val();
-        budgetRecord.Amount = $('txtAmount').val();
 
-        if (budgetRecord != null) {
-            $.ajax({
-                type: "POST",
-                url: "/JQueryAjaxCall/AjaxPostCall",
-                data: JSON.stringify(employee),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (response) {
-                    if (response == null) {
-                        alert("Something went wrong");
-                    }
-                },
-                failure: function (response) {
-                    alert(response.responseText);
-                },
-                error: function (response) {
-                    alert(response.responseText);
+$("#submit_button").click(function () {
+    console.log("hello");
+    var budgetRecord = new Object();
+    budgetRecord.TypeOfTrans = $('txtTypeOfTrans').val();
+    budgetRecord.DateOfTrans = $('txtDateOfTrans').val();
+    budgetRecord.TransDescription = $('txtTransDescription').val();
+    budgetRecord.Amount = $('txtAmount').val();
+
+    if (budgetRecord != null) {
+        $.ajax({
+            type: "POST",
+            url: "/Home/AjaxPostCall",
+            data: JSON.stringify(budgetRecord),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                if (response == null) {
+                    alert("Something went wrong");
                 }
-            });
-        }
-    });
+            },
+            failure: function (response) {
+                alert(response.responseText);
+            },
+            error: function (response) {
+                alert(response.responseText);
+            }
+        });
+    }
 });
+
      
