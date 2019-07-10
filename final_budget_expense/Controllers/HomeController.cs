@@ -71,6 +71,7 @@ namespace budget_expense.Controllers
             }
             View(budgetRecord);
         }
+        [HttpPost]
         public void AjaxPostCall (BudgetRecordModel budgetRecord)
         {
             BudgetRecordModel budget = new BudgetRecordModel
