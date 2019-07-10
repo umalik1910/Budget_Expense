@@ -11,6 +11,7 @@ namespace budget_expense.Controllers
     public class HomeController : Controller
     {
         private BudgetExpenseEntities DB = new BudgetExpenseEntities();
+        private BudgetRecord budgetRecordModel = new BudgetRecord();
        
         public ActionResult Index()
         {
@@ -52,7 +53,7 @@ namespace budget_expense.Controllers
            
         
         
-        public ActionResult BudgetSubmit([Bind(Include = "BudgetID, DateOfTrans, UserID, TypeOfTrans, TransDescription, Amount")] BudgetRecord budgetRecord)
+        public void BudgetSubmit([Bind(Include = "BudgetID, DateOfTrans, UserID, TypeOfTrans, TransDescription, Amount")] BudgetRecord budgetRecord)
         {
             try
             {
@@ -61,16 +62,16 @@ namespace budget_expense.Controllers
 
                     DB.BudgetRecords.Add(budgetRecord);
                     DB.SaveChanges();
-                    return RedirectToAction("Home");
+                    RedirectToAction("Home");
                 }
             }
             catch(Exception e)
             {
                 Console.WriteLine(e); 
             }
-            return View(budgetRecord);
+            View(budgetRecord);
         }
-        public void AjaxPostCall(BudgetRecordModel budgetRecord)
+        public void AjaxPostCall (BudgetRecordModel budgetRecord)
         {
             BudgetRecordModel budget = new BudgetRecordModel
             {
@@ -80,6 +81,8 @@ namespace budget_expense.Controllers
                 Amount = budgetRecord.Amount
 
             };
+            BudgetSubmit(budgetRecordModel);
+            //return JsonResult();
 
         } 
     }

@@ -64,10 +64,16 @@ function submitDetails() {
 $("#submit_button").click(function () {
     console.log("hello");
     var budgetRecord = new Object();
-    budgetRecord.TypeOfTrans = $('txtTypeOfTrans').val();
-    budgetRecord.DateOfTrans = $('txtDateOfTrans').val();
-    budgetRecord.TransDescription = $('txtTransDescription').val();
-    budgetRecord.Amount = $('txtAmount').val();
+    budgetRecord.date_selection = $('#date_selection').val();
+    console.log(budgetRecord.date_selection);
+    budgetRecord.budget_name = $('#budget_name').val();
+    console.log(budgetRecord.budget_name);
+    budgetRecord.description = $('.description').val();
+    console.log(budgetRecord.description); 
+    budgetRecord.expense_type = $('.expense_type').val();
+    console.log(budgetRecord.expense_type);
+    budgetRecord.amount_input= $('#amount_input').val();
+    console.log(budgetRecord.amount_input); 
 
     if (budgetRecord != null) {
         $.ajax({

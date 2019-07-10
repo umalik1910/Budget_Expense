@@ -13,5 +13,7 @@ namespace final_budget_expense.Models
         public string TypeOfTrans { get; set; }
         public string TransDescrption { get; set;}
         public float Amount { get; set; }
+
+    
     }
 }
