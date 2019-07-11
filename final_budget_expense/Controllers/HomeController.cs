@@ -16,7 +16,7 @@ namespace budget_expense.Controllers
         public ActionResult Index()
         {
            
-            List<BudgetRecord> budgetRecord = DB.BudgetRecords.ToList();
+            List<BudgetRecordModel> budgetRecord = DB.BudgetRecords.ToList();
             return View(budgetRecord);
 
         }
@@ -50,42 +50,37 @@ namespace budget_expense.Controllers
         {
             return View();
         }
-           
-        
-        
-        public void BudgetSubmit([Bind(Include = "BudgetID, DateOfTrans, UserID, TypeOfTrans, TransDescription, Amount")] BudgetRecord budgetRecord)
-        {
+
+
+
+           [HttpPost]
+           public ActionResult AjaxPostCall (BudgetRecordModel budgetRecord)
+           {
+               BudgetRecordModel budget = new BudgetRecordModel
+               {
+                   TypeOfTrans = budgetRecord.TypeOfTrans,
+                   DateOfTrans = budgetRecord.DateOfTrans,
+                   TransDescrption = budgetRecord.TransDescrption,
+                   Amount = budgetRecord.Amount
+
+               };
+
             try
             {
-                if(ModelState.IsValid)
+                if (ModelState.IsValid)
                 {
 
-                    DB.BudgetRecords.Add(budgetRecord);
+                    DB.BudgetRecords.Add(budget);
                     DB.SaveChanges();
                     RedirectToAction("Home");
                 }
             }
             catch(Exception e)
             {
-                Console.WriteLine(e); 
+                Console.WriteLine("error" + e);
             }
-            View(budgetRecord);
-        }
-        [HttpPost]
-        public void AjaxPostCall (BudgetRecordModel budgetRecord)
-        {
-            BudgetRecordModel budget = new BudgetRecordModel
-            {
-                TypeOfTrans = budgetRecord.TypeOfTrans,
-                DateOfTrans = budgetRecord.DateOfTrans,
-                TransDescrption = budgetRecord.TransDescrption,
-                Amount = budgetRecord.Amount
-
-            };
-            BudgetSubmit(budgetRecordModel);
-            //return JsonResult();
-
-        } 
+            return Json(new { sucess = "true" });
+           } 
     }
 
     

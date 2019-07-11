@@ -25,7 +25,7 @@ namespace final_budget_expense.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<BudgetRecord> BudgetRecords { get; set; }
-        public virtual DbSet<UserInfo> UserInfoes { get; set; }
+        public virtual DbSet<BudgetRecordModel> BudgetRecords { get; set; }
+        public virtual DbSet<UserInfo> UserInformation { get; set; }
     }
 }

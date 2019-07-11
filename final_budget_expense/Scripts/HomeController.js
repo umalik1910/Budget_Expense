@@ -82,6 +82,7 @@ $("#submit_button").click(function () {
             data: JSON.stringify(budgetRecord),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
+            data: budgetRecord,
             success: function (response) {
                 if (response == null) {
                     alert("Something went wrong");
@@ -95,6 +96,7 @@ $("#submit_button").click(function () {
             }
         });
     }
+    console.log(JSON.stringify(budgetRecord)); 
 });
 
      
