@@ -54,16 +54,22 @@ namespace budget_expense.Controllers
 
 
            [HttpPost]
-           public ActionResult AjaxPostCall (BudgetRecordModel budgetRecord)
+           public ActionResult AjaxPostCall (string budget_name, DateTime date_selection, string description, string expense_type, float amount_input)
            {
-               BudgetRecordModel budget = new BudgetRecordModel
-               {
-                   TypeOfTrans = budgetRecord.TypeOfTrans,
-                   DateOfTrans = budgetRecord.DateOfTrans,
-                   TransDescrption = budgetRecord.TransDescrption,
-                   Amount = budgetRecord.Amount
+            BudgetRecordModel budget = new BudgetRecordModel
+            {
+                DateOfTrans = date_selection,
+                TypeOfTrans = budget_name,
+                TransDescrption = description,
+                Amount = amount_input,
+                ExpenseType = expense_type,
 
-               };
+                /* TypeOfTrans = budgetRecord.TypeOfTrans,
+                DateOfTrans = budgetRecord.DateOfTrans,
+                TransDescrption = budgetRecord.TransDescrption,
+                Amount = budgetRecord.Amount */
+
+            };
 
             try
             {
