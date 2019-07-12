@@ -63,6 +63,8 @@ function submitDetails() {
 
 $("#submit_button").click(function () {
     console.log("hello");
+    console.log("1. -> " + $('#amount_input').val());
+    console.log("2. -> " + parseFloat($('#amount_input').val()));
     //var budgetRecord = new Object();
     //budgetRecord.date_selection = $('#date_selection').val();
     //console.log(budgetRecord.date_selection);
@@ -79,14 +81,14 @@ $("#submit_button").click(function () {
         $.ajax({
             type: "POST",
             url: "/Home/AjaxPostCall",
-            data: {
+            data: JSON.stringify({
                 
                 'budget_name':$('#budget_name').val().toString(),
                 'date_selection': $('#date_selection').val(),
                 'description': $('.description').val().toString(),
                 'expense_type': $('.expense_type').val().toString(),
-                'amount_input': parseFloat($('.amount_input').val()),
-            },
+                'amount_input': parseFloat($('#amount_input').val()),
+            }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             //data: budgetRecord,

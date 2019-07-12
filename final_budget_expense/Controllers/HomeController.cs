@@ -62,7 +62,7 @@ namespace budget_expense.Controllers
                 TypeOfTrans = budget_name,
                 TransDescrption = description,
                 Amount = amount_input,
-                ExpenseType = expense_type,
+                //ExpenseType = expense_type,
 
                 /* TypeOfTrans = budgetRecord.TypeOfTrans,
                 DateOfTrans = budgetRecord.DateOfTrans,
@@ -70,6 +70,8 @@ namespace budget_expense.Controllers
                 Amount = budgetRecord.Amount */
 
             };
+
+            Console.WriteLine(budget.Amount);
 
             try
             {
