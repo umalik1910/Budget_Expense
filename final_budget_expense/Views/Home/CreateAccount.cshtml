@@ -38,17 +38,17 @@
     <div class="col-md-7">
         <div>
             <row>
-                <input type="text" placeholder="Enter Last Name" name="email" required>
+                <input id="first_name_input" type="text" placeholder="Enter First Name" name="email" required>
             </row>
         </div>
         <div>
             <row>
-                <input type="text" placeholder="Enter First Name" name="email" required>
+                <input id="last_name_input" type="text" placeholder="Enter Last Name" name="email" required>
             </row>
         </div>
         <div>
             <row>
-                <input type="text" placeholder="Enter Username" name="email" required>
+                <input id="username_input" type="text" placeholder="Enter Username" name="email" required>
             </row>
         </div>
         <div>
@@ -60,12 +60,12 @@
             
         <div>
             <row>
-                <input type="text" placeholder="Enter Email" name="email" required>
+                <input id="email_input" type="text" placeholder="Enter Email" name="email" required>
             </row>
         </div>
         <div>
             <button id="reset_button" type="button" onclick="location.href='@Url.Action("SignIn", "Home")'">Cancel</button>
-            <button onclick = "submitDetails()" id="submit_button" type="submit">Sign Up</button>
+            <button onclick = "submitDetails()" id="create_account_submit_button" type="submit">Sign Up</button>
         </div>
            
     </div>

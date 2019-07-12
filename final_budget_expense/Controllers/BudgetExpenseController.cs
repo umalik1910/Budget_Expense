@@ -13,7 +13,7 @@ namespace final_budget_expense.Controllers
         public ActionResult Index()
         {
             BudgetExpenseEntities DB = new BudgetExpenseEntities();
-            List<BudgetRecordModel> budgetRecord = DB.BudgetRecords.ToList();
+            List<BudgetRecord> budgetRecord = DB.BudgetRecords.ToList();
             return View(budgetRecord);
         }
     }

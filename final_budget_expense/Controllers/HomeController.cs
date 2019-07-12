@@ -15,8 +15,9 @@ namespace budget_expense.Controllers
        
         public ActionResult Index()
         {
-           
-            List<BudgetRecordModel> budgetRecord = DB.BudgetRecords.ToList();
+
+            BudgetExpenseEntities DB = new BudgetExpenseEntities();
+            List<BudgetRecord> budgetRecord = DB.BudgetRecords.ToList();
             return View(budgetRecord);
 
         }
@@ -56,14 +57,16 @@ namespace budget_expense.Controllers
            [HttpPost]
            public ActionResult AjaxPostCall (string budget_name, DateTime date_selection, string description, string expense_type, float amount_input)
            {
-            BudgetRecordModel budget = new BudgetRecordModel
+            
+            BudgetRecord budget = new BudgetRecord
             {
+                UserID = 1, 
+                BudgetID = 1,
                 DateOfTrans = date_selection,
                 TypeOfTrans = budget_name,
-                TransDescrption = description,
+                TransDescription = description,
                 Amount = amount_input,
-                //ExpenseType = expense_type,
-
+                ExpenseType = expense_type,
                 /* TypeOfTrans = budgetRecord.TypeOfTrans,
                 DateOfTrans = budgetRecord.DateOfTrans,
                 TransDescrption = budgetRecord.TransDescrption,
@@ -71,7 +74,7 @@ namespace budget_expense.Controllers
 
             };
 
-            Console.WriteLine(budget.Amount);
+           
 
             try
             {
@@ -80,7 +83,7 @@ namespace budget_expense.Controllers
 
                     DB.BudgetRecords.Add(budget);
                     DB.SaveChanges();
-                    RedirectToAction("Home");
+                    //RedirectToAction("Home");
                 }
             }
             catch(Exception e)

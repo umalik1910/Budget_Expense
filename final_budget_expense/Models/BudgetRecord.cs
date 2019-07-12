@@ -15,11 +15,12 @@ namespace final_budget_expense.Models
     public partial class BudgetRecord
     {
         public int BudgetID { get; set; }
-        public System.DateTime DateOfTrans { get; set; }
+        public Nullable<System.DateTime> DateOfTrans { get; set; }
         public int UserID { get; set; }
         public string TypeOfTrans { get; set; }
         public string TransDescription { get; set; }
         public double Amount { get; set; }
+        public string ExpenseType { get; set; }
     
         public virtual UserInfo UserInfo { get; set; }
     }

@@ -59,12 +59,66 @@ function submitDetails() {
         }
     }
 }
+/*
+$("#create_account_submit_button").click(function () {
+    {
+        $.ajax({
+            type: "POST",
+            url: "/Home/AjaxPostCall",
+            data: JSON.stringify({
 
+                'first_name_input': $('#first_name_input').val(),
+                'last_name_input': $('#last_name_input').val(),
+                'username_input': $('#username_input').val(),
+                'first_psw': $('#first_psw').val(),
+                'second_psw': $('#second_psw').val(),
+                'email_input': $('#email_input').val(),
+            }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                if (response == null) {
+                    alert("Something went wrong");
+                }
+            },
+            failure: function (response) {
+                alert(response.responseText);
+            },
+            error: function (response) {
+                alert(response.responseText);
+            }
+        });
+    }
+});
+$("#sign_in_submit_button").click(function () {
+    {
+        $.ajax({
+            type: "POST",
+            url: "/Home/AjaxPostCall",
+            data: JSON.stringify({
 
+                'username_input': $('#username_input').val(),
+                'password_input': $('#password_input').val(),           
+                }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                if (response == null) {
+                    alert("Something went wrong");
+                }
+            },
+            failure: function (response) {
+                alert(response.responseText);
+            },
+            error: function (response) {
+                alert(response.responseText);
+            }
+        });
+    }
+});
+*/
 $("#submit_button").click(function () {
-    console.log("hello");
-    console.log("1. -> " + $('#amount_input').val());
-    console.log("2. -> " + parseFloat($('#amount_input').val()));
+    
     //var budgetRecord = new Object();
     //budgetRecord.date_selection = $('#date_selection').val();
     //console.log(budgetRecord.date_selection);
