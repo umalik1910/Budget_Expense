@@ -12,7 +12,7 @@ namespace budget_expense.Controllers
     {
         private BudgetExpenseEntities DB = new BudgetExpenseEntities();
         private BudgetRecord budgetRecordModel = new BudgetRecord();
-       
+
         public ActionResult Index()
         {
 
@@ -24,7 +24,7 @@ namespace budget_expense.Controllers
 
         public ActionResult Home()
         {
-            
+
             return View();
 
         }
@@ -54,27 +54,21 @@ namespace budget_expense.Controllers
 
 
 
-           [HttpPost]
-           public ActionResult AjaxPostCall (string budget_name, DateTime date_selection, string description, string expense_type, float amount_input)
-           {
-            
+        [HttpPost]
+        public ActionResult BudgetSubmitAjaxPostCall(string budget_name, DateTime date_selection, string description, string expense_type, float amount_input, UserInfo userInfo)
+        {
+
             BudgetRecord budget = new BudgetRecord
             {
-                UserID = 1, 
-                BudgetID = 1,
+                UserID = userInfo.UserID,
                 DateOfTrans = date_selection,
                 TypeOfTrans = budget_name,
                 TransDescription = description,
                 Amount = amount_input,
                 ExpenseType = expense_type,
-                /* TypeOfTrans = budgetRecord.TypeOfTrans,
-                DateOfTrans = budgetRecord.DateOfTrans,
-                TransDescrption = budgetRecord.TransDescrption,
-                Amount = budgetRecord.Amount */
-
             };
 
-           
+
 
             try
             {
@@ -86,16 +80,47 @@ namespace budget_expense.Controllers
                     //RedirectToAction("Home");
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine("error" + e);
             }
             return Json(new { sucess = "true" });
-           } 
-    }
+        }
 
-    
+        public ActionResult CreateAccountAjaxPostCall(string first_name_input, string last_name_input, string username_input, string second_psw, string email_input)
+        {
+            UserInfo userInfo = new UserInfo
+            {
+                FirstName = first_name_input,
+                LastName = last_name_input,
+                UserName = username_input,
+                EmailAddress = email_input,
+                Password = second_psw,
+
+
+            };
+
+
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+
+                    DB.UserInfoes.Add(userInfo);
+                    DB.SaveChanges();
+                    //RedirectToAction("Home");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("error" + e);
+            }
+            return Json(new { sucess = "true" });
+        }
+    }
 }
+
 
 
 

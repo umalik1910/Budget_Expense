@@ -59,107 +59,92 @@ function submitDetails() {
         }
     }
 }
-/*
-$("#create_account_submit_button").click(function () {
-    {
-        $.ajax({
-            type: "POST",
-            url: "/Home/AjaxPostCall",
-            data: JSON.stringify({
-
-                'first_name_input': $('#first_name_input').val(),
-                'last_name_input': $('#last_name_input').val(),
-                'username_input': $('#username_input').val(),
-                'first_psw': $('#first_psw').val(),
-                'second_psw': $('#second_psw').val(),
-                'email_input': $('#email_input').val(),
-            }),
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: function (response) {
-                if (response == null) {
-                    alert("Something went wrong");
-                }
-            },
-            failure: function (response) {
-                alert(response.responseText);
-            },
-            error: function (response) {
-                alert(response.responseText);
-            }
-        });
+function directToHome() {
+    var password1 = document.getElementById("first_psw").value;
+    var password2 = document.getElementById("second_psw").value;
+    if (password1 && password2 != null) {
+        if (checkPassword(password1, password2)) {
+            var url = 'Home';
+            window.location.href = url;
+            
+        }
     }
-});
-$("#sign_in_submit_button").click(function () {
-    {
-        $.ajax({
-            type: "POST",
-            url: "/Home/AjaxPostCall",
-            data: JSON.stringify({
 
-                'username_input': $('#username_input').val(),
-                'password_input': $('#password_input').val(),           
+    $("#create_account_submit_button").click(function () {
+        {
+            $.ajax({
+                type: "POST",
+                url: "/Home/CreateAccountAjaxPostCall",
+                data: JSON.stringify({
+
+                    'first_name_input': $('#first_name_input').val(),
+                    'last_name_input': $('#last_name_input').val(),
+                    'username_input': $('#username_input').val(),
+                    'second_psw': $('#second_psw').val(),
+                    'email_input': $('#email_input').val(),
                 }),
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: function (response) {
-                if (response == null) {
-                    alert("Something went wrong");
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response == null) {
+                        alert("Something went wrong");
+                    }
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
                 }
-            },
-            failure: function (response) {
-                alert(response.responseText);
-            },
-            error: function (response) {
-                alert(response.responseText);
-            }
-        });
-    }
-});
-*/
-$("#submit_button").click(function () {
+            });
+        }
+    });
     
-    //var budgetRecord = new Object();
-    //budgetRecord.date_selection = $('#date_selection').val();
-    //console.log(budgetRecord.date_selection);
-    //budgetRecord.budget_name = $('#budget_name').val();
-    //console.log(budgetRecord.budget_name);
-    //budgetRecord.description = $('.description').val();
-    //console.log(budgetRecord.description); 
-    //budgetRecord.expense_type = $('.expense_type').val();
-    //console.log(budgetRecord.expense_type);
-    //budgetRecord.amount_input= $('#amount_input').val();
-   // console.log(budgetRecord.amount_input); 
 
-     {
-        $.ajax({
-            type: "POST",
-            url: "/Home/AjaxPostCall",
-            data: JSON.stringify({
-                
-                'budget_name':$('#budget_name').val().toString(),
-                'date_selection': $('#date_selection').val(),
-                'description': $('.description').val().toString(),
-                'expense_type': $('.expense_type').val().toString(),
-                'amount_input': parseFloat($('#amount_input').val()),
-            }),
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            //data: budgetRecord,
-            success: function (response) {
-                if (response == null) {
-                    alert("Something went wrong");
+    $("#submit_button").click(function () {
+
+        //var budgetRecord = new Object();
+        //budgetRecord.date_selection = $('#date_selection').val();
+        //console.log(budgetRecord.date_selection);
+        //budgetRecord.budget_name = $('#budget_name').val();
+        //console.log(budgetRecord.budget_name);
+        //budgetRecord.description = $('.description').val();
+        //console.log(budgetRecord.description); 
+        //budgetRecord.expense_type = $('.expense_type').val();
+        //console.log(budgetRecord.expense_type);
+        //budgetRecord.amount_input= $('#amount_input').val();
+        // console.log(budgetRecord.amount_input); 
+
+        {
+            
+            $.ajax({
+                type: "POST",
+                url: "/Home/BudgetSubmitAjaxPostCall",
+                data: JSON.stringify({
+
+                    'budget_name': $('#budget_name').val().toString(),
+                    'date_selection': $('#date_selection').val(),
+                    'description': $('.description').val().toString(),
+                    'expense_type': $('.expense_type').val().toString(),
+                    'amount_input': parseFloat($('#amount_input').val()),
+                }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                //data: budgetRecord,
+                success: function (response) {
+                    if (response == null) {
+                        alert("Something went wrong");
+                    }
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
                 }
-            },
-            failure: function (response) {
-                alert(response.responseText);
-            },
-            error: function (response) {
-                alert(response.responseText);
-            }
-        });
-    }
-   // console.log(budgetRecord.date_selection); 
-});
+            });
+        }
+        // console.log(budgetRecord.date_selection); 
+    });
 
-     
+}
