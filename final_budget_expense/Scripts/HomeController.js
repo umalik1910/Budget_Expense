@@ -152,7 +152,7 @@ $("#create_account_submit_button").click(function () {
 
     $("#submit_button").click(function () {
 
-        var budgetRecord = new Object();
+       /* var budgetRecord = new Object();
         budgetRecord.date_selection = $('#date_selection').val();
         console.log(budgetRecord.date_selection);
         budgetRecord.budget_name = $('#budget_name').val();
@@ -162,7 +162,7 @@ $("#create_account_submit_button").click(function () {
         budgetRecord.expense_type = $('.expense_type').val();
         console.log(budgetRecord.expense_type);
         budgetRecord.amount_input= $('#amount_input').val();
-        console.log(budgetRecord.amount_input); 
+        console.log(budgetRecord.amount_input); */ 
 
         {
             
@@ -196,3 +196,37 @@ $("#create_account_submit_button").click(function () {
         // console.log(budgetRecord.date_selection); 
     });
 
+$("#sign_in_submit_button").click(function () {
+    {
+
+        $.ajax({
+            type: "POST",
+            url: "/Home/LoginCheck",
+            data: JSON.stringify({
+
+                'username_input': $('#username_input').val(),
+                 'password_input': $('#password_input').val(),
+            }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                if (response === 'Success') {
+                    window.alert("Login was successful");
+                    var url = 'Home/Home';
+                    window.location.href = url;
+                } 
+
+                window.alert("No work");
+                
+            },
+            failure: function (response) {
+                alert(response.responseText);
+            },
+            error: function (response) {
+                alert(response.responseText);
+                window.alert("Login was unsuccessful");
+            }
+        });
+    }
+    
+});

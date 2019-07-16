@@ -12,7 +12,9 @@ namespace budget_expense.Controllers
     {
         private BudgetExpenseEntities DB = new BudgetExpenseEntities();
         private BudgetRecord budgetRecordModel = new BudgetRecord();
-        
+        private UserInfo user = new UserInfo();
+
+
 
         public ActionResult Index()
         {
@@ -58,10 +60,10 @@ namespace budget_expense.Controllers
         [HttpPost]
         public ActionResult BudgetSubmitAjaxPostCall(string budget_name, DateTime date_selection, string description, string expense_type, float amount_input)
         {
-            
+
             BudgetRecord budget = new BudgetRecord
             {
-                UserID = 1,
+                UserID = 5008,
                 DateOfTrans = date_selection,
                 TypeOfTrans = budget_name,
                 TransDescription = description,
@@ -91,7 +93,7 @@ namespace budget_expense.Controllers
         public ActionResult CreateAccountAjaxPostCall(string first_name_input, string last_name_input, string username_input, string second_psw, string email_input)
         {
             UserInfo userInfo = new UserInfo
-           
+
             {
                 FirstName = first_name_input,
                 LastName = last_name_input,
@@ -120,8 +122,32 @@ namespace budget_expense.Controllers
             }
             return Json(new { sucess = "true" });
         }
+
+        public ActionResult LoginCheck(string username_input, string password_input)
+        {
+            var user = DB.UserInfoes?.FirstOrDefault(x => x.UserName == username_input) ?? new UserInfo();
+            if (user != null)
+            {
+                if (user.UserName == username_input && user.Password == password_input)
+                {
+                    return Json("Success");
+                    
+                }
+                else
+                {
+                    return Json("Error");
+                }
+
+            }
+            else
+            {
+                return Json("Error");
+            }
+
+        }
     }
 }
+
 
 
 
