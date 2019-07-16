@@ -10,7 +10,8 @@
         x.style.display = "none";
         z.style.display = "none";
     }
-}
+};
+
 function showCurrentDate() {
     var today = new Date();
     var dd = today.getDate();
@@ -27,10 +28,11 @@ function showCurrentDate() {
 
     return today;
 
-}
+};
+
 if (document.getElementById("date_selection") != null) {
     document.getElementById("date_selection").onclick = callCurrentDate();
-}
+};
 
 function callCurrentDate() {
     var input = document.getElementById("date_selection");
@@ -46,21 +48,19 @@ function checkPassword(pass1, pass2) {
     }
     return true;
 };
-/*function submitDetails() {
+
+function directToHome() {
     var password1 = document.getElementById("first_psw").value;
     var password2 = document.getElementById("second_psw").value;
     if (password1 && password2 != null) {
         if (checkPassword(password1, password2)) {
-            //Save
-            alert("Passwords match.");
-            
+            var url = 'Home';
+            window.location.href = url;
 
-        } else {
-            //throw error
-            alert("Passwords are not matching or the boxes are blank!");
         }
     }
-}*/
+};
+
 
 $("#create_account_submit_button").click(function () {
 
@@ -106,92 +106,46 @@ $("#create_account_submit_button").click(function () {
     
 });
 
-function directToHome() {
-    var password1 = document.getElementById("first_psw").value;
-    var password2 = document.getElementById("second_psw").value;
-    if (password1 && password2 != null) {
-        if (checkPassword(password1, password2)) {
-            var url = 'Home';
-            window.location.href = url;
-            
+
+$("#submit_button").click(function () {
+
+    //var budgetRecord = new Object();
+    //budgetRecord.date_selection = $('#date_selection').val();
+    //console.log(budgetRecord.date_selection);
+    //budgetRecord.budget_name = $('#budget_name').val();
+    //console.log(budgetRecord.budget_name);
+    //budgetRecord.description = $('.description').val();
+    //console.log(budgetRecord.description); 
+    //budgetRecord.expense_type = $('.expense_type').val();
+    //console.log(budgetRecord.expense_type);
+    //budgetRecord.amount_input= $('#amount_input').val();
+    // console.log(budgetRecord.amount_input); 
+
+    $.ajax({
+        type: "POST",
+        url: "/Home/BudgetSubmitAjaxPostCall",
+        data: JSON.stringify({
+
+            'budget_name': $('#budget_name').val().toString(),
+            'date_selection': $('#date_selection').val(),
+            'description': $('.description').val().toString(),
+            'expense_type': $('.expense_type').val().toString(),
+            'amount_input': parseFloat($('#amount_input').val()),
+        }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        //data: budgetRecord,
+        success: function (response) {
+            if (response == null) {
+                alert("Something went wrong");
+            }
+        },
+        failure: function (response) {
+            alert(response.responseText);
+        },
+        error: function (response) {
+            alert(response.responseText);
         }
-    }
-
-   /* $("#create_account_submit_button").click(function () {
-        {
-            $.ajax({
-                type: "POST",
-                url: "/Home/CreateAccountAjaxPostCall",
-                data: JSON.stringify({
-
-                    'first_name_input': $('#first_name_input').val(),
-                    'last_name_input': $('#last_name_input').val(),
-                    'username_input': $('#username_input').val(),
-                    'second_psw': $('#second_psw').val(),
-                    'email_input': $('#email_input').val(),
-                }),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (response) {
-                    if (response == null) {
-                        alert("Something went wrong");
-                    }
-                },
-                failure: function (response) {
-                    alert(response.responseText);
-                },
-                error: function (response) {
-                    alert(response.responseText);
-                }
-            });
-        }
-    });*/
-    
-
-    $("#submit_button").click(function () {
-
-        //var budgetRecord = new Object();
-        //budgetRecord.date_selection = $('#date_selection').val();
-        //console.log(budgetRecord.date_selection);
-        //budgetRecord.budget_name = $('#budget_name').val();
-        //console.log(budgetRecord.budget_name);
-        //budgetRecord.description = $('.description').val();
-        //console.log(budgetRecord.description); 
-        //budgetRecord.expense_type = $('.expense_type').val();
-        //console.log(budgetRecord.expense_type);
-        //budgetRecord.amount_input= $('#amount_input').val();
-        // console.log(budgetRecord.amount_input); 
-
-        {
-            
-            $.ajax({
-                type: "POST",
-                url: "/Home/BudgetSubmitAjaxPostCall",
-                data: JSON.stringify({
-
-                    'budget_name': $('#budget_name').val().toString(),
-                    'date_selection': $('#date_selection').val(),
-                    'description': $('.description').val().toString(),
-                    'expense_type': $('.expense_type').val().toString(),
-                    'amount_input': parseFloat($('#amount_input').val()),
-                }),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                //data: budgetRecord,
-                success: function (response) {
-                    if (response == null) {
-                        alert("Something went wrong");
-                    }
-                },
-                failure: function (response) {
-                    alert(response.responseText);
-                },
-                error: function (response) {
-                    alert(response.responseText);
-                }
-            });
-        }
-        // console.log(budgetRecord.date_selection); 
     });
-
-}
+    // console.log(budgetRecord.date_selection); 
+});
