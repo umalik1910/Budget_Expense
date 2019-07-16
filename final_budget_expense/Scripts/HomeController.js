@@ -46,19 +46,66 @@ function checkPassword(pass1, pass2) {
     }
     return true;
 };
-function submitDetails() {
+/*function submitDetails() {
     var password1 = document.getElementById("first_psw").value;
     var password2 = document.getElementById("second_psw").value;
     if (password1 && password2 != null) {
         if (checkPassword(password1, password2)) {
             //Save
             alert("Passwords match.");
+            
+
         } else {
             //throw error
             alert("Passwords are not matching or the boxes are blank!");
         }
     }
-}
+}*/
+
+$("#create_account_submit_button").click(function () {
+
+    var password1 = document.getElementById("first_psw").value;
+    var password2 = document.getElementById("second_psw").value;
+    if (checkPassword(password1, password2)) {
+        //Save
+        alert("Passwords match.");
+        {
+            $.ajax({
+                type: "POST",
+                url: "/Home/CreateAccountAjaxPostCall",
+                data: JSON.stringify({
+
+                    'first_name_input': $('#first_name_input').val(),
+                    'last_name_input': $('#last_name_input').val(),
+                    'username_input': $('#username_input').val(),
+                    'second_psw': $('#second_psw').val(),
+                    'email_input': $('#email_input').val(),
+                }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response == null) {
+                        alert("Something went wrong");
+                    }
+                    var url = 'Home';
+                    window.location.href = url;
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        }
+
+    } else {
+        //throw error
+        alert("Passwords are not matching or the boxes are blank!");
+    }
+    
+});
+
 function directToHome() {
     var password1 = document.getElementById("first_psw").value;
     var password2 = document.getElementById("second_psw").value;
@@ -70,7 +117,7 @@ function directToHome() {
         }
     }
 
-    $("#create_account_submit_button").click(function () {
+   /* $("#create_account_submit_button").click(function () {
         {
             $.ajax({
                 type: "POST",
@@ -98,7 +145,7 @@ function directToHome() {
                 }
             });
         }
-    });
+    });*/
     
 
     $("#submit_button").click(function () {
