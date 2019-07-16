@@ -106,7 +106,7 @@ $("#create_account_submit_button").click(function () {
     
 });
 
-function directToHome() {
+/*function directToHome() {
     var password1 = document.getElementById("first_psw").value;
     var password2 = document.getElementById("second_psw").value;
     if (password1 && password2 != null) {
@@ -115,7 +115,7 @@ function directToHome() {
             window.location.href = url;
             
         }
-    }
+    }*/
 
    /* $("#create_account_submit_button").click(function () {
         {
@@ -150,17 +150,17 @@ function directToHome() {
 
     $("#submit_button").click(function () {
 
-        //var budgetRecord = new Object();
-        //budgetRecord.date_selection = $('#date_selection').val();
-        //console.log(budgetRecord.date_selection);
-        //budgetRecord.budget_name = $('#budget_name').val();
-        //console.log(budgetRecord.budget_name);
-        //budgetRecord.description = $('.description').val();
-        //console.log(budgetRecord.description); 
-        //budgetRecord.expense_type = $('.expense_type').val();
-        //console.log(budgetRecord.expense_type);
-        //budgetRecord.amount_input= $('#amount_input').val();
-        // console.log(budgetRecord.amount_input); 
+        var budgetRecord = new Object();
+        budgetRecord.date_selection = $('#date_selection').val();
+        console.log(budgetRecord.date_selection);
+        budgetRecord.budget_name = $('#budget_name').val();
+        console.log(budgetRecord.budget_name);
+        budgetRecord.description = $('.description').val();
+        console.log(budgetRecord.description); 
+        budgetRecord.expense_type = $('.expense_type').val();
+        console.log(budgetRecord.expense_type);
+        budgetRecord.amount_input= $('#amount_input').val();
+        console.log(budgetRecord.amount_input); 
 
         {
             
@@ -194,4 +194,3 @@ function directToHome() {
         // console.log(budgetRecord.date_selection); 
     });
 
-}

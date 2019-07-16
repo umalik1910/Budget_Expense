@@ -12,6 +12,7 @@ namespace budget_expense.Controllers
     {
         private BudgetExpenseEntities DB = new BudgetExpenseEntities();
         private BudgetRecord budgetRecordModel = new BudgetRecord();
+        
 
         public ActionResult Index()
         {
@@ -55,12 +56,12 @@ namespace budget_expense.Controllers
 
 
         [HttpPost]
-        public ActionResult BudgetSubmitAjaxPostCall(string budget_name, DateTime date_selection, string description, string expense_type, float amount_input, UserInfo userInfo)
+        public ActionResult BudgetSubmitAjaxPostCall(string budget_name, DateTime date_selection, string description, string expense_type, float amount_input)
         {
-
+            
             BudgetRecord budget = new BudgetRecord
             {
-                UserID = userInfo.UserID,
+                UserID = 1,
                 DateOfTrans = date_selection,
                 TypeOfTrans = budget_name,
                 TransDescription = description,
@@ -90,6 +91,7 @@ namespace budget_expense.Controllers
         public ActionResult CreateAccountAjaxPostCall(string first_name_input, string last_name_input, string username_input, string second_psw, string email_input)
         {
             UserInfo userInfo = new UserInfo
+           
             {
                 FirstName = first_name_input,
                 LastName = last_name_input,
