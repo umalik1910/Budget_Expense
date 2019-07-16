@@ -214,9 +214,10 @@ $("#sign_in_submit_button").click(function () {
                     window.alert("Login was successful");
                     var url = 'Home/Home';
                     window.location.href = url;
-                } 
-
-                window.alert("No work");
+                }
+                else {
+                    window.alert("No work");
+                }
                 
             },
             failure: function (response) {
