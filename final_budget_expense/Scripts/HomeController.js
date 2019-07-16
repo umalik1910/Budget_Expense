@@ -83,7 +83,9 @@ $("#create_account_submit_button").click(function () {
                 }),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                success: function (response) {
+                success: function (response)
+         
+                {
                     if (response == null) {
                         alert("Something went wrong");
                     }
