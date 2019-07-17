@@ -13,15 +13,12 @@ namespace final_budget_expense
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
+          routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "SignIn", id = UrlParameter.Optional }
             );
-            routes.MapRoute(
-            "Home",
-            "Home/{UserName}",
-            new { controller = "Home", action = "SignIn" });
+            
         }
     }
 }

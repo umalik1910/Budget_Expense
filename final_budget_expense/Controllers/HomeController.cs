@@ -131,7 +131,7 @@ namespace budget_expense.Controllers
                 if (user.UserName == username_input && user.Password == password_input)
                 {
                     //return Json("Success");
-                    return Json(new { redirectTo = Url.Action("Home", "Home", user.UserID) });
+                    return Json(new { redirectTo = Url.Action("Home", "Home", new { id = user.UserID }) });
 
                 }
                 else
