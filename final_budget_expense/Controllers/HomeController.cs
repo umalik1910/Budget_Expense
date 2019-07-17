@@ -25,9 +25,9 @@ namespace budget_expense.Controllers
 
         }
 
-        public ActionResult Home()
+        public ActionResult Home(int id)
         {
-
+            ViewBag.Id = id;
             return View();
 
         }
@@ -62,8 +62,7 @@ namespace budget_expense.Controllers
         {
 
             BudgetRecord budget = new BudgetRecord
-            {
-                UserID = 5008,
+            {          
                 DateOfTrans = date_selection,
                 TypeOfTrans = budget_name,
                 TransDescription = description,
@@ -120,7 +119,8 @@ namespace budget_expense.Controllers
             {
                 Console.WriteLine("error" + e);
             }
-            return Json(new { sucess = "true" });
+            return Json("Success");
+           
         }
 
         public ActionResult LoginCheck(string username_input, string password_input)
@@ -130,8 +130,9 @@ namespace budget_expense.Controllers
             {
                 if (user.UserName == username_input && user.Password == password_input)
                 {
-                    return Json("Success");
-                    
+                    //return Json("Success");
+                    return Json(new { redirectTo = Url.Action("Home", "Home", user.UserID) });
+
                 }
                 else
                 {

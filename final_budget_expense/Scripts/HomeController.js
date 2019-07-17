@@ -83,20 +83,17 @@ $("#create_account_submit_button").click(function () {
                 }),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                success: function (response)
-         
-                {
-                    if (response == null) {
-                        alert("Something went wrong");
-                    }
-                    var url = 'Home';
-                    window.location.href = url;
+                success: function (response) {
+                        var url = 'SignIn/Home';
+                        window.location.href = url;
+                       
                 },
                 failure: function (response) {
                     alert(response.responseText);
                 },
                 error: function (response) {
                     alert(response.responseText);
+                    
                 }
             });
         }
@@ -104,7 +101,7 @@ $("#create_account_submit_button").click(function () {
     } else {
         //throw error
         alert("Passwords are not matching or the boxes are blank!");
-    }
+}
     
 });
 
@@ -210,15 +207,13 @@ $("#sign_in_submit_button").click(function () {
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (response) {
-                if (response === 'Success') {
-                    window.alert("Login was successful");
-                    var url = 'Home/Home';
-                    window.location.href = url;
-                }
-                else {
-                    window.alert("No work");
-                }
                 
+                    window.alert("Login was successful");
+                    //var url = 'Home/Home';
+                    //window.location.href = url;
+                    if (response.redirectTo) {
+                        window.location.href = response.redirectTo;
+                    }    
             },
             failure: function (response) {
                 alert(response.responseText);
