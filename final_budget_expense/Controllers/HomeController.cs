@@ -58,11 +58,12 @@ namespace budget_expense.Controllers
 
 
         [HttpPost]
-        public ActionResult BudgetSubmitAjaxPostCall(string budget_name, DateTime date_selection, string description, string expense_type, float amount_input)
+        public ActionResult BudgetSubmitAjaxPostCall(string budget_name, DateTime date_selection, string description, string expense_type, float amount_input, int user_id)
         {
 
             BudgetRecord budget = new BudgetRecord
-            {          
+            {
+                UserID = user_id,
                 DateOfTrans = date_selection,
                 TypeOfTrans = budget_name,
                 TransDescription = description,
@@ -94,6 +95,7 @@ namespace budget_expense.Controllers
             UserInfo userInfo = new UserInfo
 
             {
+                
                 FirstName = first_name_input,
                 LastName = last_name_input,
                 UserName = username_input,
