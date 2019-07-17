@@ -167,7 +167,7 @@ $("#create_account_submit_button").click(function () {
                 type: "POST",
                 url: "/Home/BudgetSubmitAjaxPostCall",
                 data: JSON.stringify({
-                    'userid': $('#user_id').val(),
+                    'user_id': $('#user_id').val(),
                     'budget_name': $('#budget_name').val().toString(),
                     'date_selection': $('#date_selection').val(),
                     'description': $('.description').val().toString(),
