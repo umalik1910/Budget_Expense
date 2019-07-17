@@ -149,7 +149,9 @@ $("#create_account_submit_button").click(function () {
 
     $("#submit_button").click(function () {
 
-       /* var budgetRecord = new Object();
+        var budgetRecord = new Object();
+        budgetRecord.user_id = $('#user_id').val();
+        console.log(budgetRecord.user_id);
         budgetRecord.date_selection = $('#date_selection').val();
         console.log(budgetRecord.date_selection);
         budgetRecord.budget_name = $('#budget_name').val();
@@ -159,7 +161,7 @@ $("#create_account_submit_button").click(function () {
         budgetRecord.expense_type = $('.expense_type').val();
         console.log(budgetRecord.expense_type);
         budgetRecord.amount_input= $('#amount_input').val();
-        console.log(budgetRecord.amount_input); */ 
+        console.log(budgetRecord.amount_input);  
 
         {
             
