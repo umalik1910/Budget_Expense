@@ -27,8 +27,9 @@ namespace budget_expense.Controllers
 
         public ActionResult Home(int id)
         {
-            ViewBag.UserId = id;
-            return View(ViewBag.UserId);
+            
+            var user = DB.UserInfoes.Single(x => x.UserID == id);
+            return View(user);
 
         }
         public ActionResult SignIn()
@@ -133,8 +134,8 @@ namespace budget_expense.Controllers
                 if (user.UserName == username_input && user.Password == password_input)
                 {
                     //return Json("Success");
-                    ViewBag.UserId = user.UserID;
-                    return Json(new { redirectTo = Url.Action("Home", "Home", new { id = ViewBag.UserID }) });
+                    //ViewBag.UserId = user.UserID;
+                    return Json(new { redirectTo = Url.Action("Home", "Home", new{ id = user.UserID }) });
 
                 }
                 else

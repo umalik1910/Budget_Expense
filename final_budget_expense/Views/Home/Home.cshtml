@@ -1,7 +1,8 @@
-﻿@{ ViewData["Title"] = "Home";}
+﻿@model final_budget_expense.Models.UserInfo
+@{ ViewData["Title"] = "Home";}
 
 <div id="body">
-    <p id="user_id" >  @ViewBag.UserId </p>
+    <p id="user_id">  @Model.UserID </p>
     <div>
         <div>
             <div class="col-md-6 col-md-push-3">
@@ -137,4 +138,5 @@
             </tr>
         </table>
 </body>
+    model final_budget_expense.Models.UserInfo
         --->
