@@ -27,8 +27,8 @@ namespace budget_expense.Controllers
 
         public ActionResult Home(int id)
         {
-            ViewBag.Id = id;
-            return View();
+            ViewBag.UserId = id;
+            return View(ViewBag.UserId);
 
         }
         public ActionResult SignIn()

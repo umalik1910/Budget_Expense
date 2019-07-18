@@ -1,141 +1,140 @@
-﻿D
-@{ ViewData["Title"] = "Home";}
-    <p id="user_id" type="hidden">@ViewBag.UserID</p>
+﻿@{ ViewData["Title"] = "Home";}
 
-        <div id="body">
-            <div>
+<div id="body">
+    <p id="user_id" >  @ViewBag.UserId </p>
+    <div>
+        <div>
+            <div class="col-md-6 col-md-push-3">
                 <div>
-                    <div class="col-md-6 col-md-push-3">
-                        <div>
+                    <row>
+                        <label>
+                            Date of Transaction
+                        </label>
+                    </row>
+                    <form>
+                        <row>
+                            <label>
+                                Type of Transaction
+                            </label>
+                        </row>
+                        <div class="expense_type" style="display:none">
                             <row>
                                 <label>
-                                    Date of Transaction
-                                </label>
-                            </row>
-                            <form>
-                                <row>
-                                    <label>
-                                        Type of Transaction
-                                    </label>
-                                </row>
-                                <div class="expense_type" style="display:none">
-                                    <row>
-                                        <label>
-                                            Category of Expense
-                                        </label>
-                                    </row>
-                                </div>
-
-                            </form>
-                            <row>
-                                <div>
-                                    <label>
-                                        Description
-                                    </label>
-                                </div>
-                            </row>
-                            <row>
-                                <label id="about_label">
-                                    Amount
+                                    Category of Expense
                                 </label>
                             </row>
                         </div>
-                    </div>
 
-                    <div class="col-md-6">
+                    </form>
+                    <row>
                         <div>
-                            <row><input id="date_selection" type="date" required></row>
+                            <label>
+                                Description
+                            </label>
                         </div>
-                        <div>
-                            <row>
-                                <select id="budget_name" onchange="showCategories()" name="transaction type" required>
-                                    <option value="income">Income</option>
-                                    <option value="Expense">Expense</option>
-                                </select>
-                            </row>
-                        </div>
-                        <row>
-                            <select class="expense_type" style="display:none" name="category of expense">
-                                <option value="shopping">Shopping</option>
-                                <option value="travel">Travel</option>
-                                <option value="food and beverages">Food and Beverages</option>
-                                <option value="other"> Other </option>
-                            </select>
-                        </row>
-                        <div>
-                            <row>
-                                <textarea class="description" placeholder=" Please input description of transaction" required>
-</textarea>
-                            </row>
-                        </div>
-                        <div>
-                            <row>
-                                <span id="dollar_sign">
-                                    <span style='color:green'>$</span>
-                                </span>
-                                <input id="amount_input" type="text" name="Numerical amount" required />
-                            </row>
-                        </div>
-                        <div>
-                            <input id="submit_button" type="submit" value="Submit" required />
-                            <button id="reset_button" type="reset" value="Reset">Clear</button>
-                        </div>
-                    </div>
+                    </row>
+                    <row>
+                        <label id="about_label">
+                            Amount
+                        </label>
+                    </row>
                 </div>
             </div>
-        </div>
 
-        <!-- <div class="container col-md-6">
-            <label>
-                <div id="transaction_label">
-                    Type of Transaction
+            <div class="col-md-6">
+                <div>
+                    <row><input id="date_selection" type="date" required></row>
                 </div>
-                <select id="budget_name" onchange="showCategories()" name="transaction type" required>
-                    <option value="income">Income</option>
-                    <option value="Expense">Expense</option>
-                </select>
-            </label>
-            </form>
-            <div id="Expense_Category" style="display:none">
-                <label>
-                    <div id="expense_label">
-                        Category of Expense
-                    </div>
-                    <select id="expense_name" name="category of expense" required>
+                <div>
+                    <row>
+                        <select id="budget_name" onchange="showCategories()" name="transaction type" required>
+                            <option value="income">Income</option>
+                            <option value="Expense">Expense</option>
+                        </select>
+                    </row>
+                </div>
+                <row>
+                    <select class="expense_type" style="display:none" name="category of expense">
                         <option value="shopping">Shopping</option>
                         <option value="travel">Travel</option>
                         <option value="food and beverages">Food and Beverages</option>
                         <option value="other"> Other </option>
                     </select>
-                </label>
+                </row>
+                <div>
+                    <row>
+                        <textarea class="description" placeholder=" Please input description of transaction" required>
+</textarea>
+                    </row>
+                </div>
+                <div>
+                    <row>
+                        <span id="dollar_sign">
+                            <span style='color:green'>$</span>
+                        </span>
+                        <input id="amount_input" type="text" name="Numerical amount" required />
+                    </row>
+                </div>
+                <div>
+                    <input id="submit_button" type="submit" value="Submit" required />
+                    <button id="reset_button" type="reset" value="Reset">Clear</button>
+                </div>
             </div>
-            <div>
-                <label id="description_label">
-                    Description
-                </label>
-                <textarea placeholder="Please input description of transaction" required>
-    </textarea>
+        </div>
+    </div>
+</div>
 
+<!-- <div class="container col-md-6">
+        <label>
+            <div id="transaction_label">
+                Type of Transaction
             </div>
-            <div>
-                <label>
-                    Amount
-                    <input type="text" name="Numerical amount" required />
-                </label>
-            </div>
-            <div>
-                <input id="submit_button" type="submit" value="Submit" required />
-            </div>
-            <div>
-                <button id="reset_button" type="reset" value="Reset">Cancel</button>
-            </div>
-            </form>
-            <br />
-            <table style=100%>
-                <tr>
-                    <th>Incomes</th>
-                    <th>Expenses</th>
-                </tr>
-            </table>
-    </body>
-            --->
+            <select id="budget_name" onchange="showCategories()" name="transaction type" required>
+                <option value="income">Income</option>
+                <option value="Expense">Expense</option>
+            </select>
+        </label>
+        </form>
+        <div id="Expense_Category" style="display:none">
+            <label>
+                <div id="expense_label">
+                    Category of Expense
+                </div>
+                <select id="expense_name" name="category of expense" required>
+                    <option value="shopping">Shopping</option>
+                    <option value="travel">Travel</option>
+                    <option value="food and beverages">Food and Beverages</option>
+                    <option value="other"> Other </option>
+                </select>
+            </label>
+        </div>
+        <div>
+            <label id="description_label">
+                Description
+            </label>
+            <textarea placeholder="Please input description of transaction" required>
+</textarea>
+
+        </div>
+        <div>
+            <label>
+                Amount
+                <input type="text" name="Numerical amount" required />
+            </label>
+        </div>
+        <div>
+            <input id="submit_button" type="submit" value="Submit" required />
+        </div>
+        <div>
+            <button id="reset_button" type="reset" value="Reset">Cancel</button>
+        </div>
+        </form>
+        <br />
+        <table style=100%>
+            <tr>
+                <th>Incomes</th>
+                <th>Expenses</th>
+            </tr>
+        </table>
+</body>
+        --->
