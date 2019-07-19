@@ -1,8 +1,8 @@
 ﻿@model final_budget_expense.Models.UserInfo
 @{ ViewData["Title"] = "Home";}
 
-<div id="body">
-    <p id="user_id">  @Model.UserID </p>
+<div  id="body">
+    <label id="user_id">  @Model.UserID </label>
     <div>
         <div>
             <div class="col-md-6 col-md-push-3">
@@ -77,8 +77,9 @@
                     </row>
                 </div>
                 <div>
-                    <input id="submit_button" type="submit" value="Submit" required />
+                    <input id="submit_button" type="submit" value="Submit"/>
                     <button id="reset_button" type="reset" value="Reset">Clear</button>
+                    <button id="history" onclick="location.href='@Url.Action("Index", "BudgetExpense")'"> History</button>
                 </div>
             </div>
         </div>

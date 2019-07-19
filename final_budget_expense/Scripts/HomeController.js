@@ -169,7 +169,8 @@ $("#create_account_submit_button").click(function () {
                 type: "POST",
                 url: "/Home/BudgetSubmitAjaxPostCall",
                 data: JSON.stringify({
-                    'user_id': $('#user_id').val(),
+                    //'user_id': $('#user_id').val(),
+                    //'user_id': $('#user_id').serialize(),
                     'budget_name': $('#budget_name').val().toString(),
                     'date_selection': $('#date_selection').val(),
                     'description': $('.description').val().toString(),
@@ -228,3 +229,4 @@ $("#sign_in_submit_button").click(function () {
     }
     
 });
+

@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<final_budget_expense.Models.BudgetRecord>
+@model final_budget_expense.Models.BudgetRecord
+
 
 @{
     ViewBag.Title = "Index";
@@ -12,40 +14,56 @@
 </p>
 <table class="table">
     <tr>
+
         <th>
-            @Html.DisplayNameFor(model => model.DateOfTrans)
+            Date
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TypeOfTrans)
+            Type
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TransDescription)
+            Description
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Amount)
+            Amount
         </th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.DateOfTrans)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.TypeOfTrans)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.TransDescription)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Amount)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.BudgetID }) |
-        @Html.ActionLink("Details", "Details", new { id = item.BudgetID }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.BudgetID })
-    </td>
-</tr>
-}
-
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfTrans)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeOfTrans)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransDescription)
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.BudgetID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.BudgetID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.BudgetID })
+            </td>
+        </tr>
+    }
 </table>
+@foreach (var item in Model.TypeOfTrans)
+{
+    double total = 0;
+    double amount = 0;
+    if (@Model.TypeOfTrans == "expense")
+    {
+        amount = @Model.Amount * -1;
+        total -= amount;
+    }
+    else if (@Model.TypeOfTrans == "income")
+    {
+        amount = @Model.Amount;
+        total += amount;
+    }
+}

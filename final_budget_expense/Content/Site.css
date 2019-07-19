@@ -45,7 +45,7 @@ textarea {
         background-color: green;
         color: white;
         text-align: center;
-    }
+ }
 #reset_button {
     background-color: white;
     color: red;
@@ -102,9 +102,28 @@ label{
     border: 2px solid green;
     text-align: center;
 }
+#sign_in_submit_button:hover {
+    background-color: green;
+    color: white;
+    text-align: center;
+}
 #create_account_submit_button {
     background-color: white;
     color: green;
     border: 2px solid green;
+    text-align: center;
+}
+#user_id {
+    visibility: hidden;
+}
+#history {
+    background-color: white;
+    color: blue;
+    border: 2px solid blue;
+    text-align: center;
+}
+#history:hover {
+    background-color: blue;
+    color: white;
     text-align: center;
 }
