@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<final_budget_expense.Models.BudgetRecord>
-@model final_budget_expense.Models.BudgetRecord
 
 
 @{
@@ -51,19 +50,29 @@
             </td>
         </tr>
     }
+   Total of Current Money: @calcTotal()
 </table>
-@foreach (var item in Model.TypeOfTrans)
+
+@functions
 {
-    double total = 0;
+
+public double calcTotal() { 
+double total = 0;
+foreach (var item in Model)
+{
+    
     double amount = 0;
-    if (@Model.TypeOfTrans == "expense")
+    if (item.TypeOfTrans == "Expense")
     {
-        amount = @Model.Amount * -1;
-        total -= amount;
-    }
-    else if (@Model.TypeOfTrans == "income")
-    {
-        amount = @Model.Amount;
+        amount = item.Amount * -1;
         total += amount;
     }
+    else if (item.TypeOfTrans == "Income")
+    {
+        amount = item.Amount;
+        total += amount;
+    }
+}
+return total; 
+}
 }
