@@ -4,6 +4,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var currentMonth = DateTime.Now.Month;
 }
 
     <table class="table">
@@ -41,7 +42,8 @@
             </th>
         </tr>
 
-        @foreach (var item in Model.Where(x => x.DateOfTrans.Month == DateTime.Now.Month))
+
+        @foreach (var item in Model.Where(x => x.DateOfTrans.Month == currentMonth))
         {
             <tr>
                 <td>
