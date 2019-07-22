@@ -28,11 +28,11 @@
         </th>
     </tr>
 
-    @foreach (var item in Model)
+    @foreach (var item in Model.Where(x => x.DateOfTrans.Month == DateTime.Now.Month))
     {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateOfTrans)
+            <td>                
+                @Html.Raw(item.DateOfTrans.ToString("d"))
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TypeOfTrans)
