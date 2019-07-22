@@ -9,7 +9,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+   
 </p>
 <table class="table">
     <tr>
@@ -30,27 +30,27 @@
 
     @foreach (var item in Model.Where(x => x.DateOfTrans.Month == DateTime.Now.Month))
     {
-        <tr>
-            <td>                
-                @Html.Raw(item.DateOfTrans.ToString("d"))
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TypeOfTrans)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TransDescription)
-            </td>
-            <td>
-                $@Html.DisplayFor(modelItem => item.Amount)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.BudgetID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.BudgetID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.BudgetID })
-            </td>
-        </tr>
+<tr>
+    <td>
+        @Html.Raw(item.DateOfTrans.ToString("d"))
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TypeOfTrans)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TransDescription)
+    </td>
+    <td>
+        $@Html.DisplayFor(modelItem => item.Amount)
+    </td>
+    
+</tr>
     }
-   Total of Current Money: @calcTotal()
+<th>
+    Total: $@calcTotal()
+</th>
+    
+
 </table>
 
 @functions
