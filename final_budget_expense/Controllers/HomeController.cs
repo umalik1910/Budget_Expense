@@ -18,23 +18,24 @@ namespace budget_expense.Controllers
 
         public ActionResult Index()
         {
-            var budgetData = GetFilteredRecords(DateTime.Now.Month);
+            List<BudgetRecord> budgetData = GetFilteredRecords(DateTime.Now.Month);
             return View(budgetData);
+            
         }
 
         [HttpGet]
-        public ActionResult GetBudgetRecords(int id)
+        private ActionResult GetBudgetRecords(string month)
         {
-            var budgets = GetFilteredRecords(id);
-
+           var budgets = GetFilteredRecords(Convert.ToInt32(month));
+            
             return Index();
         }
 
-        private List<BudgetRecord> GetFilteredRecords(int id)
+        public  List<BudgetRecord> GetFilteredRecords(int month)
         {
             List<BudgetRecord> budgetRecord = DB.BudgetRecords.ToList();
 
-            budgetRecord.Where(x => x.DateOfTrans.Month == id);
+            budgetRecord.Where(x => x.DateOfTrans.Month == month);
 
             return budgetRecord;
         }

@@ -218,14 +218,15 @@ $("#sign_in_submit_button").click(function () {
 });
 
 $("#monthOptions").change(function () {
-    var print = $('#monthOptions').val(); 
-    console.log(print); 
+    var month = $('#monthOptions').val(); 
+    console.log(month); 
     $.ajax({
         type: "GET",
         url: "/Home/GetBudgetRecords",
-        data: JSON.stringify({
-            'id': ($('#monthOptions').val()),
-        }),
+        data: {
+            'month': month
+        },
+     
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (response) {
