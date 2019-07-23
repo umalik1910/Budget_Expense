@@ -222,9 +222,9 @@ $("#monthOptions").change(function () {
     console.log(print); 
     $.ajax({
         type: "GET",
-        url: "/Home/GetFilteredRecords",
+        url: "/Home/GetBudgetRecords",
         data: JSON.stringify({
-            'id': $('#monthOptions').val(),
+            'id': ($('#monthOptions').val()),
         }),
         contentType: "application/json; charset=utf-8",
         dataType: "json",

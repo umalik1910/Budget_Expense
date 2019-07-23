@@ -21,8 +21,16 @@ namespace budget_expense.Controllers
             var budgetData = GetFilteredRecords(DateTime.Now.Month);
             return View(budgetData);
         }
+
         [HttpGet]
-        public List<BudgetRecord> GetFilteredRecords(int id)
+        public ActionResult GetBudgetRecords(int id)
+        {
+            var budgets = GetFilteredRecords(id);
+
+            return Index();
+        }
+
+        private List<BudgetRecord> GetFilteredRecords(int id)
         {
             List<BudgetRecord> budgetRecord = DB.BudgetRecords.ToList();
 
