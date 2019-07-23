@@ -18,11 +18,17 @@ namespace budget_expense.Controllers
 
         public ActionResult Index()
         {
-
-            BudgetExpenseEntities DB = new BudgetExpenseEntities();
+            var budgetData = GetFilteredRecords(DateTime.Now.Month);
+            return View(budgetData);
+        }
+        [HttpGet]
+        public List<BudgetRecord> GetFilteredRecords(int id)
+        {
             List<BudgetRecord> budgetRecord = DB.BudgetRecords.ToList();
-            return View(budgetRecord);
 
+            budgetRecord.Where(x => x.DateOfTrans.Month == id);
+
+            return budgetRecord;
         }
 
         public ActionResult Home(int id)

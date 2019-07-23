@@ -186,7 +186,7 @@ $("#submit_button").click(function () {
 
 
 $("#sign_in_submit_button").click(function () {
-    {
+   {
 
         $.ajax({
             type: "POST",
@@ -201,8 +201,6 @@ $("#sign_in_submit_button").click(function () {
             success: function (response) {
                 
                     window.alert("Login was successful");
-                    //var url = 'Home/Home';
-                    //window.location.href = url;
                     if (response.redirectTo) {
                         window.location.href = response.redirectTo;
                     }    
@@ -219,3 +217,27 @@ $("#sign_in_submit_button").click(function () {
     
 });
 
+$("#monthOptions").change(function () {
+    var print = $('#monthOptions').val(); 
+    console.log(print); 
+    $.ajax({
+        type: "GET",
+        url: "/Home/GetFilteredRecords",
+        data: JSON.stringify({
+            'id': $('#monthOptions').val(),
+        }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (response) {
+            if (response == null) {
+                alert("Something went wrong");
+            }
+        },
+        failure: function (response) {
+            alert(response.responseText);
+        },
+        error: function (response) {
+            alert(response.responseText);
+        }
+    });
+});
