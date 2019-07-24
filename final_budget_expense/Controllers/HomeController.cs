@@ -16,19 +16,22 @@ namespace budget_expense.Controllers
 
 
 
-        public ActionResult Index(int month)
+        public ActionResult Index(string month)
         {
-             
-            List<BudgetRecord> budgetData = GetFilteredRecords(month);
+            if (String.IsNullOrEmpty(month))
+            {
+                month = DateTime.Now.Month.ToString();
+            }
+
+            List<BudgetRecord> budgetData = GetFilteredRecords(Convert.ToInt32(month));
             return View(budgetData);
-            
         }
 
         
         public ActionResult GetBudgetRecords(string month)
         {
-           var budgets = GetFilteredRecords(Convert.ToInt32(month));
-            
+
+            //var budgetRecord = GetFilteredRecords(Convert.ToInt32(month));
             return View("Index");
         }
 

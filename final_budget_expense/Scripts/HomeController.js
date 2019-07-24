@@ -222,7 +222,7 @@ $("#monthOptions").change(function () {
     console.log(month); 
     $.ajax({
         type: "GET",
-        url: "/Home/GetBudgetRecords",
+        url: "/Home/Index",
         data: {
             'month': month
         },
