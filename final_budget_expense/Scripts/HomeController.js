@@ -232,7 +232,9 @@ $("#monthOptions").change(function () {
         success: function (response) {
             if (response == null) {
                 alert("Something went wrong");
-            }
+            } 
+            $('#recordList').empty();
+            $('#recordList').html(response);
         },
         failure: function (response) {
             alert(response.responseText);
