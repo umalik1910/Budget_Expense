@@ -222,7 +222,7 @@ $("#monthOptions").change(function () {
     console.log(month); 
     $.ajax({
         type: "GET",
-        url: "/BudgetExpense/Index",
+        url: "/BudgetExpense/GetTransactionPartial",
         data: {
             'month': month
         },
@@ -230,8 +230,8 @@ $("#monthOptions").change(function () {
             if (response == null) {
                 alert("Something went wrong");
             } 
-            $('#transactions').empty();
-            $('#transactions').html(response);
+            $('#recordList').empty();
+            $('#recordList').html(response);
         },
         failure: function (response) {
             alert(response.responseText);

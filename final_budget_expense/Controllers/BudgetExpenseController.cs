@@ -35,14 +35,12 @@ namespace final_budget_expense.Controllers
         {
 
             var budgetRecord = GetFilteredRecords(Convert.ToInt32(month));
-            return PartialView(budgetRecord);
+            return PartialView("_TransactionsPartial", budgetRecord);
         }
 
         public List<BudgetRecord> GetFilteredRecords(int month)
         {
-            List<BudgetRecord> budgetRecord = DB.BudgetRecords.ToList();
-
-            budgetRecord.Where(x => x.DateOfTrans.Month == month);
+            List<BudgetRecord> budgetRecord = DB.BudgetRecords.Where(x => x.DateOfTrans.Month == month).ToList();
 
             return budgetRecord;
         }
