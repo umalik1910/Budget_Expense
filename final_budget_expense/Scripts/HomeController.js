@@ -222,13 +222,10 @@ $("#monthOptions").change(function () {
     console.log(month); 
     $.ajax({
         type: "GET",
-        url: "/Home/Index",
+        url: "/BudgetExpense/Index",
         data: {
             'month': month
         },
-     
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
         success: function (response) {
             if (response == null) {
                 alert("Something went wrong");

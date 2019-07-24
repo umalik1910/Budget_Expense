@@ -9,12 +9,43 @@ namespace final_budget_expense.Controllers
 {
     public class BudgetExpenseController : Controller
     {
+        BudgetExpenseEntities DB = new BudgetExpenseEntities();
         // GET: BudgetExpense
-        public ActionResult Index()
+        /* public ActionResult Index()
+         {
+
+             List<BudgetRecord> budgetRecord = DB.BudgetRecords.ToList();
+             return View(budgetRecord);
+         }*/
+
+
+        public ActionResult Index(string month)
         {
-            BudgetExpenseEntities DB = new BudgetExpenseEntities();
-            List<BudgetRecord> budgetRecord = DB.BudgetRecords.ToList();
-            return View(budgetRecord);
+            if (String.IsNullOrEmpty(month))
+            {
+                month = DateTime.Now.Month.ToString();
+            }
+
+            List<BudgetRecord> budgetData = GetFilteredRecords(Convert.ToInt32(month));
+            return View(budgetData);
         }
+
+
+        public ActionResult GetBudgetRecords(string month)
+        {
+
+            //var budgetRecord = GetFilteredRecords(Convert.ToInt32(month));
+            return View("Index");
+        }
+
+        public List<BudgetRecord> GetFilteredRecords(int month)
+        {
+            List<BudgetRecord> budgetRecord = DB.BudgetRecords.ToList();
+
+            budgetRecord.Where(x => x.DateOfTrans.Month == month);
+
+            return budgetRecord;
+        }
+
     }
 }

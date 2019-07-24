@@ -10,7 +10,7 @@ namespace final_budget_expense.Controllers
     public class UserInfoController : Controller
     {
         // GET: UserInfo
-        public ActionResult Index()
+       public ActionResult Index()
         {
             BudgetExpenseEntities DB = new BudgetExpenseEntities();
             List<UserInfo> userInfo = DB.UserInfoes.ToList();
