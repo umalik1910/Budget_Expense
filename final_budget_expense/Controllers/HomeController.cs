@@ -16,19 +16,20 @@ namespace budget_expense.Controllers
 
 
 
-        public ActionResult Index()
+        public ActionResult Index(int month)
         {
-            List<BudgetRecord> budgetData = GetFilteredRecords(DateTime.Now.Month);
+             
+            List<BudgetRecord> budgetData = GetFilteredRecords(month);
             return View(budgetData);
             
         }
 
-        [HttpGet]
-        private ActionResult GetBudgetRecords(string month)
+        
+        public ActionResult GetBudgetRecords(string month)
         {
            var budgets = GetFilteredRecords(Convert.ToInt32(month));
             
-            return Index();
+            return View("Index");
         }
 
         public  List<BudgetRecord> GetFilteredRecords(int month)
