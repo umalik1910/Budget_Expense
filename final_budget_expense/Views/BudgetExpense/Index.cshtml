@@ -42,25 +42,11 @@
                 </th>
             </tr>
 
+            <div id="transactions">
+              
+                    @Html.Partial("_TransactionsPartial", @Model)
 
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.Raw(item.DateOfTrans.ToString("d"))
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TypeOfTrans)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TransDescription)
-                    </td>
-                    <td>
-                        $@Html.DisplayFor(modelItem => item.Amount)
-                    </td>
-
-                </tr>
-            }
+            </div>
             <th>
                 Total: $@calcTotal()
             </th>

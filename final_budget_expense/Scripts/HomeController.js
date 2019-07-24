@@ -230,8 +230,8 @@ $("#monthOptions").change(function () {
             if (response == null) {
                 alert("Something went wrong");
             } 
-            $('#recordList').empty();
-            $('#recordList').html(response);
+            $('#transactions').empty();
+            $('#transactions').html(response);
         },
         failure: function (response) {
             alert(response.responseText);

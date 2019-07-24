@@ -31,11 +31,11 @@ namespace final_budget_expense.Controllers
         }
 
 
-        public ActionResult GetBudgetRecords(string month)
+        public PartialViewResult GetTransactionPartial(string month)
         {
 
-            //var budgetRecord = GetFilteredRecords(Convert.ToInt32(month));
-            return View("Index");
+            var budgetRecord = GetFilteredRecords(Convert.ToInt32(month));
+            return PartialView(budgetRecord);
         }
 
         public List<BudgetRecord> GetFilteredRecords(int month)
