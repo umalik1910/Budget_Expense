@@ -225,7 +225,7 @@
     <Content Include="Views\Home\SignIn.cshtml" />
     <Content Include="Views\Home\CreateAccount.cshtml" />
     <Content Include="Views\BudgetExpense\Index.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_TransactionsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
