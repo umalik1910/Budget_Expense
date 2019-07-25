@@ -1,4 +1,5 @@
 ﻿using final_budget_expense.Models;
+using MoreLinq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +11,7 @@ namespace final_budget_expense.Controllers
     public class BudgetExpenseController : Controller
     {
         BudgetExpenseEntities DB = new BudgetExpenseEntities();
-        // GET: BudgetExpense
-        /* public ActionResult Index()
-         {
-
-             List<BudgetRecord> budgetRecord = DB.BudgetRecords.ToList();
-             return View(budgetRecord);
-         }*/
-
+        BudgetRecordViewModel VM = new BudgetRecordViewModel();
 
         public ActionResult Index(string month)
         {
@@ -44,6 +38,30 @@ namespace final_budget_expense.Controllers
 
             return budgetRecord;
         }
+   
+        /*
+        public List<int> GetYears()
+        {
+            var records = DB.BudgetRecords.DistinctBy(x => x.DateOfTrans.Year).ToList();
+            List<int> availableYears = new List<int>();
 
+            foreach(var item in records)
+            {
+                availableYears.Add(item.DateOfTrans.Year);
+            }
+            return availableYears;
+        }
+        public List<int>  GetMonthsByYear(List<int> years)
+        {
+            List<int> availableMonths = new List<int>();
+            foreach (var item in years)
+            {
+                var month = DB.BudgetRecords.DistinctBy(x => x.DateOfTrans.Year == item).First().DateOfTrans.Month;
+                availableMonths.Add(month); 
+            }
+            return availableMonths;
+        }
+        */
     }
 }
+
