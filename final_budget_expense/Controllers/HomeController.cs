@@ -15,7 +15,7 @@ namespace budget_expense.Controllers
         private UserInfo user = new UserInfo();
 
 
-
+        /*
         public ActionResult Index(string month)
         {
             if (String.IsNullOrEmpty(month))
@@ -43,7 +43,7 @@ namespace budget_expense.Controllers
 
             return budgetRecord;
         }
-
+        */
         public ActionResult Home(int id)
         {
             

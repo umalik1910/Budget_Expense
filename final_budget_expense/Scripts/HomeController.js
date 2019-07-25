@@ -105,46 +105,7 @@ $("#create_account_submit_button").click(function () {
     
 });
 
-/*function directToHome() {
-    var password1 = document.getElementById("first_psw").value;
-    var password2 = document.getElementById("second_psw").value;
-    if (password1 && password2 != null) {
-        if (checkPassword(password1, password2)) {
-            var url = 'Home';
-            window.location.href = url;
-            
-        }
-    }*/
 
-   /* $("#create_account_submit_button").click(function () {
-        {
-            $.ajax({
-                type: "POST",
-                url: "/Home/CreateAccountAjaxPostCall",
-                data: JSON.stringify({
-
-                    'first_name_input': $('#first_name_input').val(),
-                    'last_name_input': $('#last_name_input').val(),
-                    'username_input': $('#username_input').val(),
-                    'second_psw': $('#second_psw').val(),
-                    'email_input': $('#email_input').val(),
-                }),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (response) {
-                    if (response == null) {
-                        alert("Something went wrong");
-                    }
-                },
-                failure: function (response) {
-                    alert(response.responseText);
-                },
-                error: function (response) {
-                    alert(response.responseText);
-                }
-            });
-        }
-    });*/
     
 
 $("#submit_button").click(function () {
@@ -213,31 +174,32 @@ $("#sign_in_submit_button").click(function () {
                 window.alert("Login was unsuccessful");
             }
         });
-    }
-    
+    }  
 });
 
 $("#monthOptions").change(function () {
-    var month = $('#monthOptions').val(); 
-    console.log(month); 
-    $.ajax({
-        type: "GET",
-        url: "/BudgetExpense/GetTransactionPartial",
-        data: {
-            'month': month
-        },
-        success: function (response) {
-            if (response == null) {
-                alert("Something went wrong");
-            } 
-            $('#recordList').empty();
-            $('#recordList').html(response);
-        },
-        failure: function (response) {
-            alert(response.responseText);
-        },
-        error: function (response) {
-            alert(response.responseText);
-        }
-    });
+   // $("#monthOptions").on("change", function () {
+        var month = $('#monthOptions').val();
+        console.log(month);
+        $.ajax({
+            type: "GET",
+            url: "/BudgetExpense/GetTransactionPartial",
+            data: {
+                'month': month
+            },
+            success: function (response) {
+                if (response == null) {
+                    alert("Something went wrong");
+                }
+                $('#recordList').empty();
+                $('#recordList').html(response);
+            },
+            failure: function (response) {
+                alert(response.responseText);
+            },
+            error: function (response) {
+                alert(response.responseText);
+            }
+        });
+   // });
 });
