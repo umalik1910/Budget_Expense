@@ -177,7 +177,6 @@ $("#sign_in_submit_button").click(function () {
     }  
 });
 $(document).ready("#monthOptions").change(function () {
-        //$("#monthOptions").on("change", function () {
         $.ajax({
             type: "GET",
             url: "/BudgetExpense/GetTransactionPartial",
@@ -198,6 +197,5 @@ $(document).ready("#monthOptions").change(function () {
                 alert(response.responseText);
             }
         });
-        // });
     });
 
