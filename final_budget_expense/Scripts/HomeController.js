@@ -176,11 +176,8 @@ $("#sign_in_submit_button").click(function () {
         });
     }  
 });
-
-$("#monthOptions").change(function () {
-   // $("#monthOptions").on("change", function () {
-        var month = $('#monthOptions').val();
-        console.log(month);
+$(document).ready("#monthOptions").change(function () {
+        //$("#monthOptions").on("change", function () {
         $.ajax({
             type: "GET",
             url: "/BudgetExpense/GetTransactionPartial",
@@ -201,5 +198,6 @@ $("#monthOptions").change(function () {
                 alert(response.responseText);
             }
         });
-   // });
-});
+        // });
+    });
+
