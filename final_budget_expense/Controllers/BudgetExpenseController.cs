@@ -11,7 +11,7 @@ namespace final_budget_expense.Controllers
     public class BudgetExpenseController : Controller
     {
         BudgetExpenseEntities DB = new BudgetExpenseEntities();
-        BudgetRecordViewModel VM = new BudgetRecordViewModel();
+       BudgetRecordViewModel VM = new BudgetRecordViewModel();
 
         public ActionResult Index(string month)
         {

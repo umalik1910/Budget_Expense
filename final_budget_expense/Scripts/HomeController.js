@@ -176,12 +176,13 @@ $("#sign_in_submit_button").click(function () {
         });
     }  
 });
+
 $(document).ready("#monthOptions").change(function () {
         $.ajax({
             type: "GET",
             url: "/BudgetExpense/GetTransactionPartial",
             data: {
-                'month': month
+                'month': $("#monthOptions").val(),
             },
             success: function (response) {
                 if (response == null) {
@@ -198,4 +199,5 @@ $(document).ready("#monthOptions").change(function () {
             }
         });
     });
+
 
