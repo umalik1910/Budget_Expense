@@ -46,21 +46,7 @@ function checkPassword(pass1, pass2) {
     }
     return true;
 };
-/*function submitDetails() {
-    var password1 = document.getElementById("first_psw").value;
-    var password2 = document.getElementById("second_psw").value;
-    if (password1 && password2 != null) {
-        if (checkPassword(password1, password2)) {
-            //Save
-            alert("Passwords match.");
-            
 
-        } else {
-            //throw error
-            alert("Passwords are not matching or the boxes are blank!");
-        }
-    }
-}*/
 
 $("#create_account_submit_button").click(function () {
 
@@ -178,7 +164,7 @@ $("#sign_in_submit_button").click(function () {
 });
 
 $(document).ready("#monthOptions").change(function () {
-        $.ajax({
+    $.ajax({
             type: "GET",
             url: "/BudgetExpense/GetTransactionPartial",
             data: {
@@ -198,6 +184,27 @@ $(document).ready("#monthOptions").change(function () {
                 alert(response.responseText);
             }
         });
+    }); 
+$(document).ready("#yearOptions").change(function () {
+    $.ajax({
+        type: "GET",
+        url: "/BudgetExpense/GetTransactionPartial",
+        data: {
+            'year': $("#yearOptions").val(),
+        },
+        success: function (response) {
+            if (response == null) {
+                alert("Something went wrong");
+            }
+            $('#recordList').empty();
+            $('#recordList').html(response);
+        },
+        failure: function (response) {
+            alert(response.responseText);
+        },
+        error: function (response) {
+            alert(response.responseText);
+        }
     });
-
-
+});
+  
