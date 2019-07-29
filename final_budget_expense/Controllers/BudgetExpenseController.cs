@@ -45,7 +45,6 @@ namespace final_budget_expense.Controllers
             return budgetRecord;
         }
    
-       
         public List<int> GetYears()
         {
             var records = DB.BudgetRecords.DistinctBy(x => x.DateOfTrans.Year).ToList();
@@ -64,7 +63,6 @@ namespace final_budget_expense.Controllers
             var monthConvert = CultureInfo.CurrentCulture.DateTimeFormat;
 
             var monthList = DB.BudgetRecords.Where(x => x.DateOfTrans.Year == year).DistinctBy(x => x.DateOfTrans.Month).Select(y => y.DateOfTrans.Month).ToList();
-            //var monthList = DB.BudgetRecords.DistinctBy(x => x.DateOfTrans.Month).Select(x => x.DateOfTrans.Month).ToList();
             foreach (var item in monthList)
             {
                 availableMonths.Add(monthConvert.GetMonthName(item));
