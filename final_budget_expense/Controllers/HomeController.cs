@@ -11,49 +11,15 @@ namespace budget_expense.Controllers
     public class HomeController : Controller
     {
         private BudgetExpenseEntities DB = new BudgetExpenseEntities();
-        private BudgetRecord budgetRecordModel = new BudgetRecord();
+       // private BudgetRecordViewModel budgetRecordModel = new BudgetRecordViewModel();
         private UserInfo user = new UserInfo();
-
-
-        /*
-        public ActionResult Index(string month)
+      public ActionResult Home(int id)
         {
-            if (String.IsNullOrEmpty(month))
-            {
-                month = DateTime.Now.Month.ToString();
-            }
-
-            List<BudgetRecord> budgetData = GetFilteredRecords(Convert.ToInt32(month));
-            return View(budgetData);
-        }
-
-        
-        public ActionResult GetBudgetRecords(string month)
-        {
-
-            //var budgetRecord = GetFilteredRecords(Convert.ToInt32(month));
-            return View("Index");
-        }
-
-        public  List<BudgetRecord> GetFilteredRecords(int month)
-        {
-            List<BudgetRecord> budgetRecord = DB.BudgetRecords.ToList();
-
-            budgetRecord.Where(x => x.DateOfTrans.Month == month);
-
-            return budgetRecord;
-        }
-        */
-        public ActionResult Home(int id)
-        {
-            
             var user = DB.UserInfoes.Single(x => x.UserID == id);
             return View(user);
-
         }
         public ActionResult SignIn()
         {
-
             return View();
         }
         public ActionResult CreateAccount()

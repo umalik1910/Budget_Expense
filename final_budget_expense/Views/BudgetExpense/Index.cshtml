@@ -1,13 +1,10 @@
-﻿@model IEnumerable<final_budget_expense.Models.BudgetRecordViewModel>
-
+﻿@model  final_budget_expense.Models.BudgetRecordViewModel
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
     <div id="recordList">
-        @Html.Partial("_TransactionsPartial", @Model)
-
-
+        @Html.Partial("_TransactionsPartial", Model)
     </div>
 

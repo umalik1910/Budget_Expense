@@ -134,7 +134,6 @@ $("#submit_button").click(function () {
 
 $("#sign_in_submit_button").click(function () {
    {
-
         $.ajax({
             type: "POST",
             url: "/Home/LoginCheck",
