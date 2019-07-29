@@ -10,7 +10,7 @@ namespace final_budget_expense.Models
 
         public IEnumerable<BudgetRecord> Records { get; set; }
         public List<int> Years { get; set; }
-        public List<int> Months { get; set; }
+        public List<String> Months { get; set; }
         public string SelectedMonth { get; set; }
         public string SelectedYear { get; set; }
 

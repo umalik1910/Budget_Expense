@@ -2,6 +2,7 @@
 using MoreLinq;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -15,15 +16,17 @@ namespace final_budget_expense.Controllers
 
         public ActionResult Index(string month, string year)
         {
+            int monthVal = 0;
+            int yearVal = 0;
+
             if (String.IsNullOrEmpty(month) && String.IsNullOrEmpty(year))
             {
-                month = DateTime.Now.Month.ToString();
-                year = DateTime.Now.Year.ToString();
-            }
-
+              monthVal  = (int)DateTime.Now.Month;
+              yearVal = (int)DateTime.Now.Year;
+            } 
             
             VM.Years = GetYears();
-            VM.Months = GetMonthsByYear(VM.Years);
+            VM.Months = GetMonthsByYear(yearVal);
             VM.Records = GetFilteredRecords(Convert.ToInt32(month), Convert.ToInt32(year));
             return View(VM);
         }
@@ -32,14 +35,13 @@ namespace final_budget_expense.Controllers
         public PartialViewResult GetTransactionPartial(string month, string year)
         {
 
-            var budgetRecord = GetFilteredRecords(Convert.ToInt32(month), Convert.ToInt32(year));
+            List<BudgetRecord> budgetRecord = GetFilteredRecords(Convert.ToInt32(month), Convert.ToInt32(year));
             return PartialView("_TransactionsPartial", budgetRecord);
         }
 
         public List<BudgetRecord> GetFilteredRecords(int month, int year)
         {
             List<BudgetRecord> budgetRecord = DB.BudgetRecords.Where(x => x.DateOfTrans.Month == month && x.DateOfTrans.Year == year).ToList();
-
             return budgetRecord;
         }
    
@@ -55,13 +57,17 @@ namespace final_budget_expense.Controllers
             }
             return availableYears;
         }
-        public List<int>  GetMonthsByYear(List<int> years)
+         
+        public List<string>  GetMonthsByYear(int year)
         {
-            List<int> availableMonths = new List<int>();
-            foreach (var item in years)
+            List<string> availableMonths = new List<string>();
+            var monthConvert = CultureInfo.CurrentCulture.DateTimeFormat;
+
+            var monthList = DB.BudgetRecords.Where(x => x.DateOfTrans.Year == year).DistinctBy(x => x.DateOfTrans.Month).Select(y => y.DateOfTrans.Month).ToList();
+            //var monthList = DB.BudgetRecords.DistinctBy(x => x.DateOfTrans.Month).Select(x => x.DateOfTrans.Month).ToList();
+            foreach (var item in monthList)
             {
-                var month = DB.BudgetRecords.DistinctBy(x => x.DateOfTrans.Year == item).First().DateOfTrans.Month;
-                availableMonths.Add(month); 
+                availableMonths.Add(monthConvert.GetMonthName(item));
             }
             return availableMonths;
         }    
