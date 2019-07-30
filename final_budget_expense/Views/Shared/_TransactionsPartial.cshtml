@@ -5,8 +5,8 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DropDownListFor(x => Model.SelectedMonth, new SelectList(Model.Months), htmlAttributes: new { @id = "monthOptions" })
-            @Html.DropDownListFor(x => Model.SelectedYear, new SelectList(Model.Years), htmlAttributes: new { @id = "yearOptions" })
+            @Html.DropDownListFor(x => Model.SelectedMonth,  new SelectList(Model.Months), htmlAttributes: new { @id = "monthOptions" })
+            @Html.DropDownListFor(x => Model.SelectedYear, new  SelectList(Model.Years), htmlAttributes: new { @id = "yearOptions" })
         </th>
     </tr>
     <tr>

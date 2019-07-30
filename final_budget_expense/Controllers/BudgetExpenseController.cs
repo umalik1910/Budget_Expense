@@ -23,11 +23,11 @@ namespace final_budget_expense.Controllers
             {
               monthVal  = (int)DateTime.Now.Month;
               yearVal = (int)DateTime.Now.Year;
-              VM.Records = GetFilteredRecords(monthVal, yearVal);
+              VM.Records = GetFilteredRecords(monthVal, yearVal, VM.SelectedMonth);
             }
             else
             {
-                VM.Records = GetFilteredRecords(Convert.ToInt32(month), year);
+                VM.Records = GetFilteredRecords(Convert.ToInt32(month), year, VM.SelectedMonth);
 
             }
             
@@ -48,25 +48,60 @@ namespace final_budget_expense.Controllers
             {
                 monthVal = (int)DateTime.Now.Month;
                 yearVal = (int)DateTime.Now.Year;
-                budgetRecord.Records = GetFilteredRecords(monthVal, yearVal);
+                budgetRecord.Records = GetFilteredRecords(monthVal, yearVal, budgetRecord.SelectedMonth);
                 budgetRecord.Years = GetYears();
                 budgetRecord.Months = GetMonthsByYear(yearVal);
+                //budgetRecord.SelectedMonth = monthVal;
+                //budgetRecord.SelectedYear = yearVal;
             }
             else
             {
                 monthVal = DateTime.ParseExact(month, "MMMM", CultureInfo.InvariantCulture).Month;
                 budgetRecord.Years = GetYears();
                 budgetRecord.Months = GetMonthsByYear(year);
-                budgetRecord.Records = GetFilteredRecords(monthVal, year);
+                budgetRecord.SelectedMonth = month;
+                budgetRecord.SelectedYear = year;
+                budgetRecord.Records = GetFilteredRecords(monthVal, year, budgetRecord.SelectedMonth);
+                
             }
+           
+            
             
            
             return PartialView("_TransactionsPartial", budgetRecord);
         }
 
-        public List<BudgetRecord> GetFilteredRecords(int month, int? year)
+        public List<BudgetRecord> GetFilteredRecords(int month, int? year, string firstMonth)
         {
-            List<BudgetRecord> budgetRecord = DB.BudgetRecords.Where(x => x.DateOfTrans.Month == month && x.DateOfTrans.Year == year).ToList();
+            List<BudgetRecord> budgetRecord = new List<BudgetRecord>();
+            int firstMonth2 = 0;
+            if (!String.IsNullOrEmpty(firstMonth))
+            {
+               firstMonth2 = DateTime.ParseExact(firstMonth, "MMMM", CultureInfo.InvariantCulture).Month;
+
+            }
+           
+            if (DB.BudgetRecords.Any(x => x.DateOfTrans.Year == year))
+            {
+
+                if (DB.BudgetRecords.Where(y => y.DateOfTrans.Year == year).Any(x => x.DateOfTrans.Month == month))
+                {
+                    budgetRecord = DB.BudgetRecords.Where(x => x.DateOfTrans.Month == month && x.DateOfTrans.Year == year).ToList();
+                }
+                else if(DB.BudgetRecords.Where(y => y.DateOfTrans.Year == year).Any(x => x.DateOfTrans.Month == firstMonth2))
+                {
+                    budgetRecord = DB.BudgetRecords.Where(x => x.DateOfTrans.Month == firstMonth2 && x.DateOfTrans.Year == year).ToList();
+                }
+                else
+                {
+                    
+                    budgetRecord = DB.BudgetRecords.Where(x => x.DateOfTrans.Year == year).ToList();
+                   
+                    //return the new month and year here
+                }
+            }
+           
+            
             return budgetRecord;
         }
    

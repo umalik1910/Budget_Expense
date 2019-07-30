@@ -12,7 +12,7 @@ namespace final_budget_expense.Models
         public List<int> Years { get; set; }
         public List<string> Months { get; set; }
         public string SelectedMonth { get; set; }
-        public string SelectedYear { get; set; }
+        public int? SelectedYear { get; set; }
 
 
     }
