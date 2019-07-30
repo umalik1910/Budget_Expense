@@ -14,32 +14,57 @@ namespace final_budget_expense.Controllers
        BudgetExpenseEntities DB = new BudgetExpenseEntities();
        BudgetRecordViewModel VM = new BudgetRecordViewModel();
 
-        public ActionResult Index(string month, string year)
+        public ActionResult Index(string month, int? year)
         {
             int monthVal = 0;
             int yearVal = 0;
 
-            if (String.IsNullOrEmpty(month) && String.IsNullOrEmpty(year))
+            if (String.IsNullOrEmpty(month) && year == null)
             {
               monthVal  = (int)DateTime.Now.Month;
               yearVal = (int)DateTime.Now.Year;
-            } 
+              VM.Records = GetFilteredRecords(monthVal, yearVal);
+            }
+            else
+            {
+                VM.Records = GetFilteredRecords(Convert.ToInt32(month), year);
+
+            }
             
             VM.Years = GetYears();
             VM.Months = GetMonthsByYear(yearVal);
-            VM.Records = GetFilteredRecords(Convert.ToInt32(month), Convert.ToInt32(year));
+            
             return View(VM);
         }
 
 
-        public PartialViewResult GetTransactionPartial(string month, string year)
+        public PartialViewResult GetTransactionPartial(string month, int? year)
         {
 
-            List<BudgetRecord> budgetRecord = GetFilteredRecords(Convert.ToInt32(month), Convert.ToInt32(year));
+            BudgetRecordViewModel budgetRecord = new BudgetRecordViewModel();
+            int monthVal = 0;
+            int yearVal = 0;
+            if (String.IsNullOrEmpty(month) && year == null)
+            {
+                monthVal = (int)DateTime.Now.Month;
+                yearVal = (int)DateTime.Now.Year;
+                budgetRecord.Records = GetFilteredRecords(monthVal, yearVal);
+                budgetRecord.Years = GetYears();
+                budgetRecord.Months = GetMonthsByYear(yearVal);
+            }
+            else
+            {
+                monthVal = DateTime.ParseExact(month, "MMMM", CultureInfo.InvariantCulture).Month;
+                budgetRecord.Years = GetYears();
+                budgetRecord.Months = GetMonthsByYear(year);
+                budgetRecord.Records = GetFilteredRecords(monthVal, year);
+            }
+            
+           
             return PartialView("_TransactionsPartial", budgetRecord);
         }
 
-        public List<BudgetRecord> GetFilteredRecords(int month, int year)
+        public List<BudgetRecord> GetFilteredRecords(int month, int? year)
         {
             List<BudgetRecord> budgetRecord = DB.BudgetRecords.Where(x => x.DateOfTrans.Month == month && x.DateOfTrans.Year == year).ToList();
             return budgetRecord;
@@ -56,8 +81,8 @@ namespace final_budget_expense.Controllers
             }
             return availableYears;
         }
-         
-        public List<string>  GetMonthsByYear(int year)
+
+        public List<string>  GetMonthsByYear(int? year)
         {
             List<string> availableMonths = new List<string>();
             var monthConvert = CultureInfo.CurrentCulture.DateTimeFormat;
@@ -69,6 +94,7 @@ namespace final_budget_expense.Controllers
             }
             return availableMonths;
         }    
+       
     }
 }
 

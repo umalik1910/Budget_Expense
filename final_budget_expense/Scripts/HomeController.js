@@ -168,6 +168,7 @@ $(document).ready("#monthOptions").change(function () {
             url: "/BudgetExpense/GetTransactionPartial",
             data: {
                 'month': $("#monthOptions").val(),
+                'year' : $("#yearOptions").val()
             },
             success: function (response) {
                 if (response == null) {
@@ -184,12 +185,14 @@ $(document).ready("#monthOptions").change(function () {
             }
         });
     }); 
+/*
  $(document).ready("#yearOptions").change(function () {
     $.ajax({
         type: "GET",
         url: "/BudgetExpense/GetTransactionPartial",
         data: {
             'year': $("#yearOptions").val(),
+            'month': $("#monthOptions").val()
         },
         success: function (response) {
             if (response == null) {
@@ -206,4 +209,4 @@ $(document).ready("#monthOptions").change(function () {
         }
     });
 });
-  
+  */
