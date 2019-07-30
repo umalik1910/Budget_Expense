@@ -23,11 +23,11 @@ namespace final_budget_expense.Controllers
             {
               monthVal  = (int)DateTime.Now.Month;
               yearVal = (int)DateTime.Now.Year;
-              VM.Records = GetFilteredRecords(monthVal, yearVal, VM.SelectedMonth);
+              VM.Records = GetFilteredRecords(monthVal, yearVal);
             }
             else
             {
-                VM.Records = GetFilteredRecords(Convert.ToInt32(month), year, VM.SelectedMonth);
+                VM.Records = GetFilteredRecords(Convert.ToInt32(month), year);
 
             }
             
@@ -48,7 +48,7 @@ namespace final_budget_expense.Controllers
             {
                 monthVal = (int)DateTime.Now.Month;
                 yearVal = (int)DateTime.Now.Year;
-                budgetRecord.Records = GetFilteredRecords(monthVal, yearVal, budgetRecord.SelectedMonth);
+                budgetRecord.Records = GetFilteredRecords(monthVal, yearVal);
                 budgetRecord.Years = GetYears();
                 budgetRecord.Months = GetMonthsByYear(yearVal);
                 //budgetRecord.SelectedMonth = monthVal;
@@ -61,7 +61,7 @@ namespace final_budget_expense.Controllers
                 budgetRecord.Months = GetMonthsByYear(year);
                 budgetRecord.SelectedMonth = month;
                 budgetRecord.SelectedYear = year;
-                budgetRecord.Records = GetFilteredRecords(monthVal, year, budgetRecord.SelectedMonth);
+                budgetRecord.Records = GetFilteredRecords(monthVal, year);
                 
             }
            
@@ -71,16 +71,10 @@ namespace final_budget_expense.Controllers
             return PartialView("_TransactionsPartial", budgetRecord);
         }
 
-        public List<BudgetRecord> GetFilteredRecords(int month, int? year, string firstMonth)
+        public List<BudgetRecord> GetFilteredRecords(int month, int? year)
         {
             List<BudgetRecord> budgetRecord = new List<BudgetRecord>();
-            int firstMonth2 = 0;
-            if (!String.IsNullOrEmpty(firstMonth))
-            {
-               firstMonth2 = DateTime.ParseExact(firstMonth, "MMMM", CultureInfo.InvariantCulture).Month;
-
-            }
-           
+            
             if (DB.BudgetRecords.Any(x => x.DateOfTrans.Year == year))
             {
 
@@ -88,16 +82,14 @@ namespace final_budget_expense.Controllers
                 {
                     budgetRecord = DB.BudgetRecords.Where(x => x.DateOfTrans.Month == month && x.DateOfTrans.Year == year).ToList();
                 }
-                else if(DB.BudgetRecords.Where(y => y.DateOfTrans.Year == year).Any(x => x.DateOfTrans.Month == firstMonth2))
-                {
-                    budgetRecord = DB.BudgetRecords.Where(x => x.DateOfTrans.Month == firstMonth2 && x.DateOfTrans.Year == year).ToList();
-                }
+               
                 else
                 {
-                    
-                    budgetRecord = DB.BudgetRecords.Where(x => x.DateOfTrans.Year == year).ToList();
-                   
-                    //return the new month and year here
+                    var firstMonth = DB.BudgetRecords.Where(x => x.DateOfTrans.Year == year).First();
+                    budgetRecord.Add(firstMonth);
+                    //budgetRecord = DB.BudgetRecords.Where(x => x.DateOfTrans.Year == year).ToList();
+
+
                 }
             }
            
