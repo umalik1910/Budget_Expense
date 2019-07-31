@@ -70,8 +70,14 @@ $("#create_account_submit_button").click(function () {
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {
+                    if (response == "Existing") {
+                        window.alert("Account already exists under this username and password, account cannot be made!");
+                    }
+                    else {
                         var url = 'SignIn/Home';
                         window.location.href = url;
+                    }
+                        
                        
                 },
                 failure: function (response) {
@@ -119,6 +125,9 @@ $("#submit_button").click(function () {
                 if (response == null) {
                     alert("Something went wrong");
                 }
+                else {
+                    window.alert("Transaction was processed"); 
+                }
             },
             failure: function (response) {
                 alert(response.responseText);
@@ -145,11 +154,11 @@ $("#sign_in_submit_button").click(function () {
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (response) {
-                
                     window.alert("Login was successful");
                     if (response.redirectTo) {
                         window.location.href = response.redirectTo;
-                    }    
+                    
+                }
             },
             failure: function (response) {
                 alert(response.responseText);
@@ -185,28 +194,3 @@ $(document).ready("#monthOptions").change(function () {
             }
         });
     }); 
-/*
- $(document).ready("#yearOptions").change(function () {
-    $.ajax({
-        type: "GET",
-        url: "/BudgetExpense/GetTransactionPartial",
-        data: {
-            'year': $("#yearOptions").val(),
-            'month': $("#monthOptions").val()
-        },
-        success: function (response) {
-            if (response == null) {
-                alert("Something went wrong");
-            }
-            $('#recordList').empty();
-            $('#recordList').html(response);
-        },
-        failure: function (response) {
-            alert(response.responseText);
-        },
-        error: function (response) {
-            alert(response.responseText);
-        }
-    });
-});
-  */

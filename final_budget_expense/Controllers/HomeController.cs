@@ -82,7 +82,7 @@ namespace budget_expense.Controllers
             UserInfo userInfo = new UserInfo
 
             {
-                
+
                 FirstName = first_name_input,
                 LastName = last_name_input,
                 UserName = username_input,
@@ -91,25 +91,31 @@ namespace budget_expense.Controllers
 
 
             };
-
-
-
-            try
+            if (DB.UserInfoes.Any(x => x.UserName == username_input && x.Password == second_psw))
             {
-                if (ModelState.IsValid)
+                return Json("Existing");
+            }
+            else
+            {
+
+
+                try
                 {
+                    if (ModelState.IsValid)
+                    {
 
-                    DB.UserInfoes.Add(userInfo);
-                    DB.SaveChanges();
-                    //RedirectToAction("Home");
+                        DB.UserInfoes.Add(userInfo);
+                        DB.SaveChanges();
+                        //RedirectToAction("Home");
+                    }
                 }
+                catch (Exception e)
+                {
+                    Console.WriteLine("error" + e);
+                }
+                return Json("Success");
+
             }
-            catch (Exception e)
-            {
-                Console.WriteLine("error" + e);
-            }
-            return Json("Success");
-           
         }
 
         public ActionResult LoginCheck(string username_input, string password_input)
