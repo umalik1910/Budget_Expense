@@ -14,11 +14,10 @@ namespace final_budget_expense.Controllers
        BudgetExpenseEntities DB = new BudgetExpenseEntities();
        BudgetRecordViewModel VM = new BudgetRecordViewModel();
 
-        public ActionResult Index(string month, int? year)
+        public ActionResult Index(string month, int? year, int id)
         {
             int monthVal = 0;
             int yearVal = 0;
-
             if (String.IsNullOrEmpty(month) && year == null)
             {
               monthVal  = (int)DateTime.Now.Month;
@@ -33,12 +32,12 @@ namespace final_budget_expense.Controllers
             
             VM.Years = GetYears();
             VM.Months = GetMonthsByYear(yearVal);
-            
+            VM.User = DB.UserInfoes.Single(x => x.UserID == id); 
             return View(VM);
         }
 
 
-        public PartialViewResult GetTransactionPartial(string month, int? year)
+        public PartialViewResult GetTransactionPartial(string month, int? year, int? id)
         {
 
             BudgetRecordViewModel budgetRecord = new BudgetRecordViewModel();
@@ -51,6 +50,7 @@ namespace final_budget_expense.Controllers
                 budgetRecord.Records = GetFilteredRecords(monthVal, yearVal);
                 budgetRecord.Years = GetYears();
                 budgetRecord.Months = GetMonthsByYear(yearVal);
+                //budgetRecord.User = DB.UserInfoes.Single(x => x.UserID == id);
                 //budgetRecord.SelectedMonth = monthVal;
                 //budgetRecord.SelectedYear = yearVal;
             }
@@ -62,12 +62,14 @@ namespace final_budget_expense.Controllers
                 budgetRecord.SelectedMonth = month;
                 budgetRecord.SelectedYear = year;
                 budgetRecord.Records = GetFilteredRecords(monthVal, year);
-                
             }
-           
+
+
+            if(id != null)
+            {
+                budgetRecord.User = DB.UserInfoes.Single(x => x.UserID == id);
+            }
             
-            
-           
             return PartialView("_TransactionsPartial", budgetRecord);
         }
 

@@ -2,11 +2,16 @@
 @{
     Layout = null;
 }
+@if (Model.User != null)
+{
+    <p id="user_id">@Model.User.UserID</p>
+}
+
 <table class="table">
     <tr>
         <th>
-            @Html.DropDownListFor(x => Model.SelectedMonth,  new SelectList(Model.Months), htmlAttributes: new { @id = "monthOptions" })
-            @Html.DropDownListFor(x => Model.SelectedYear, new  SelectList(Model.Years), htmlAttributes: new { @id = "yearOptions" })
+            @Html.DropDownListFor(x => Model.SelectedMonth, new SelectList(Model.Months), htmlAttributes: new { @id = "monthOptions" })
+            @Html.DropDownListFor(x => Model.SelectedYear, new SelectList(Model.Years), htmlAttributes: new { @id = "yearOptions" })
         </th>
     </tr>
     <tr>
@@ -25,27 +30,34 @@
     </tr>
 
     @foreach (var item in Model.Records)
-     {
-         <tr>
-             <td>
-                 @Html.Raw(item.DateOfTrans.ToString("d"))
-             </td>
-             <td>
-                 @Html.DisplayFor(modelItem => item.TypeOfTrans)
-             </td>
-             <td>
-                 @Html.DisplayFor(modelItem => item.TransDescription)
-             </td>
-             <td>
-                 $@Html.DisplayFor(modelItem => item.Amount)
-             </td>
+    {
+        <tr>
+            <td>
+                @Html.Raw(item.DateOfTrans.ToString("d"))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeOfTrans)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransDescription)
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => item.Amount)
+            </td>
 
-         </tr>
-     } 
-
+        </tr>
+    }
+    @if (Model.User != null)
+    {
+        <th>
+            Total: $@calcTotal()  <button onclick="location.href='@Url.Action("Home", "Home", new { id = Model.User.UserID })'" id="goBackButton" type="button">Go Back</button>
+        </th>
+    }
+    else {
     <th>
-        Total: $@calcTotal()
+        Total: $@calcTotal()  <button onclick="location.href='@Url.Action("Home", "Home")'" id="goBackButton" type="button">Go Back</button>
     </th>
+    }
 </table>
 
 @functions
@@ -71,5 +83,5 @@
         }
         return total;
     }
-    
+
 }

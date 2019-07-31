@@ -15,8 +15,10 @@ namespace budget_expense.Controllers
         private UserInfo user = new UserInfo();
       public ActionResult Home(int id)
         {
+            
             var user = DB.UserInfoes.Single(x => x.UserID == id);
             return View(user);
+                
         }
         public ActionResult SignIn()
         {
@@ -120,25 +122,31 @@ namespace budget_expense.Controllers
 
         public ActionResult LoginCheck(string username_input, string password_input)
         {
-            var user = DB.UserInfoes?.FirstOrDefault(x => x.UserName == username_input) ?? new UserInfo();
-            if (user != null)
+            //var user = DB.UserInfoes?.FirstOrDefault(x => x.UserName == username_input) ?? new UserInfo();
+            var user = DB.UserInfoes?.SingleOrDefault(x => x.UserName == username_input && x.Password == password_input);
+            if (user == null)
             {
-                if (user.UserName == username_input && user.Password == password_input)
+                return Json("Login Unsuccessful");
+            }
+            else
+            {
+                if (user != null)
                 {
-                    //return Json("Success");
-                    //ViewBag.UserId = user.UserID;
-                    return Json(new { redirectTo = Url.Action("Home", "Home", new{ id = user.UserID }) });
-
+                    if (user.UserName == username_input && user.Password == password_input)
+                    {
+                        //return Json("Success");
+                        //ViewBag.UserId = user.UserID;
+                        return Json(new { redirectTo = Url.Action("Home", "Home", new { id = user.UserID }) });
+                    }
+                    else
+                    {
+                        return Json("Error");
+                    }
                 }
                 else
                 {
                     return Json("Error");
                 }
-
-            }
-            else
-            {
-                return Json("Error");
             }
 
         }

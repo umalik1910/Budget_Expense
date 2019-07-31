@@ -14,6 +14,7 @@ namespace final_budget_expense.Models
         public string SelectedMonth { get; set; }
         public int? SelectedYear { get; set; }
 
+        public UserInfo User { get; set; }
 
     }
 }

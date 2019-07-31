@@ -79,65 +79,10 @@
                 <div>
                     <input id="submit_button" type="submit" value="Submit"/>
                     <button id="reset_button" type="reset" value="Reset">Clear</button>
-                    <button id="history" onclick="location.href='@Url.Action("Index", "BudgetExpense")'"> History</button>
+                    <button id="history" onclick="location.href='@Url.Action("Index", "BudgetExpense", new {id = Model.UserID })'"> History</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- <div class="container col-md-6">
-        <label>
-            <div id="transaction_label">
-                Type of Transaction
-            </div>
-            <select id="budget_name" onchange="showCategories()" name="transaction type" required>
-                <option value="income">Income</option>
-                <option value="Expense">Expense</option>
-            </select>
-        </label>
-        </form>
-        <div id="Expense_Category" style="display:none">
-            <label>
-                <div id="expense_label">
-                    Category of Expense
-                </div>
-                <select id="expense_name" name="category of expense" required>
-                    <option value="shopping">Shopping</option>
-                    <option value="travel">Travel</option>
-                    <option value="food and beverages">Food and Beverages</option>
-                    <option value="other"> Other </option>
-                </select>
-            </label>
-        </div>
-        <div>
-            <label id="description_label">
-                Description
-            </label>
-            <textarea placeholder="Please input description of transaction" required>
-</textarea>
-
-        </div>
-        <div>
-            <label>
-                Amount
-                <input type="text" name="Numerical amount" required />
-            </label>
-        </div>
-        <div>
-            <input id="submit_button" type="submit" value="Submit" required />
-        </div>
-        <div>
-            <button id="reset_button" type="reset" value="Reset">Cancel</button>
-        </div>
-        </form>
-        <br />
-        <table style=100%>
-            <tr>
-                <th>Incomes</th>
-                <th>Expenses</th>
-            </tr>
-        </table>
-</body>
-    model final_budget_expense.Models.UserInfo
-        --->

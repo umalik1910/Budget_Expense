@@ -76,9 +76,7 @@ $("#create_account_submit_button").click(function () {
                     else {
                         var url = 'SignIn/Home';
                         window.location.href = url;
-                    }
-                        
-                       
+                    }  
                 },
                 failure: function (response) {
                     alert(response.responseText);
@@ -149,15 +147,20 @@ $("#sign_in_submit_button").click(function () {
             data: JSON.stringify({
 
                 'username_input': $('#username_input').val(),
-                 'password_input': $('#password_input').val(),
+                'password_input': $('#password_input').val(),
+                
             }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (response) {
+                if (response == "Login Unsuccessful") {
+                    window.alert("Account could not be found, please try again");
+                }
+                else {
                     window.alert("Login was successful");
                     if (response.redirectTo) {
                         window.location.href = response.redirectTo;
-                    
+                    }
                 }
             },
             failure: function (response) {
@@ -177,7 +180,8 @@ $(document).ready("#monthOptions").change(function () {
             url: "/BudgetExpense/GetTransactionPartial",
             data: {
                 'month': $("#monthOptions").val(),
-                'year' : $("#yearOptions").val()
+                'year': $("#yearOptions").val(),
+                'id': $('#user_id').text()
             },
             success: function (response) {
                 if (response == null) {
