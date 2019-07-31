@@ -114,3 +114,13 @@ label{
     color: white;
     text-align: center;
 }
+#tableBody {
+    border: thick dotted grey;
+    margin-right: 10%;
+    margin-left: 10%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    padding-bottom: 20%;
+    padding-top: 2%;
+    background-color: lightyellow;
+}
