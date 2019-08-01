@@ -124,3 +124,6 @@ label{
     padding-top: 2%;
     background-color: lightyellow;
 }
+#buttonAlign {
+    text-align: right;
+}
