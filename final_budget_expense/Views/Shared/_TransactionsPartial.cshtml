@@ -43,20 +43,21 @@
             </tr>
         }
     </table>
-
-    @if (Model.User != null)
+    
+    
+    `@if (Model.User != null)
     {
-        <th>
-            Total: $@calcTotal() <button onclick="location.href='@Url.Action(" Home", "Home" )'" id="goBackButton" type="button">Go Back</button>
-        </th>
+<th>
+    Total:$@calcTotal() <button onclick="location.href='@Url.Action(" Home", "Home" , Model.User.UserID)'" id="goBackButton" type="button">Go Back</button>
+</th>
     }
-    else 
+    else
     {
-        <th>
-            Total: $@calcTotal() <button onclick="location.href='@Url.Action(" Home", "Home" , Model.User.UserID)'" id="goBackButton" type="button">Go Back</button>
-        </th>
+<th>
+    Total: $@calcTotal() <button onclick="location.href='@Url.Action(" Home", "Home" )'" id="goBackButton" type="button">Go Back</button>
+</th>
     }
-
+        
 </div>
 
 @functions

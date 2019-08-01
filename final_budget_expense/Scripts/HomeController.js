@@ -174,7 +174,7 @@ $("#sign_in_submit_button").click(function () {
     }  
 });
 
-/*$(document).ready("#monthOptions").change(function () {
+$(document).ready("#monthOptions").change(function () {
     $.ajax({
             type: "GET",
             url: "/BudgetExpense/GetTransactionPartial",
@@ -197,13 +197,15 @@ $("#sign_in_submit_button").click(function () {
                 alert(response.responseText);
             }
         });
-    }); */
-//$("#goBackButton").click(function () {
-//    var userID = $('#user_id').text();
-//    if (userID != null) {
-//        window.location.href = 'Home/Home' + userID;
-//    }
-//    else {
-//        window.location.href = 'Home/Home';
-//    }
-//});
+    }); 
+ /*$("#goBackButton").click(function () {
+    var id = $("#user_id").text();
+    var url = '@Html.Raw(Url.Action("Home/Home", new { id = @Model.User.UserID }))';
+    var url2 = '@Html.Raw(Url.Action("Home/Home"))';
+    if (id != null) {
+      window.location.href = url;
+ }
+   else {
+       window.location.href = url2;
+   }
+});*/
