@@ -174,7 +174,7 @@ $("#sign_in_submit_button").click(function () {
     }  
 });
 
-$(document).ready("#monthOptions").change(function () {
+/*$(document).ready("#monthOptions").change(function () {
     $.ajax({
             type: "GET",
             url: "/BudgetExpense/GetTransactionPartial",
@@ -197,4 +197,13 @@ $(document).ready("#monthOptions").change(function () {
                 alert(response.responseText);
             }
         });
-    }); 
+    }); */
+//$("#goBackButton").click(function () {
+//    var userID = $('#user_id').text();
+//    if (userID != null) {
+//        window.location.href = 'Home/Home' + userID;
+//    }
+//    else {
+//        window.location.href = 'Home/Home';
+//    }
+//});
