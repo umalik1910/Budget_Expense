@@ -45,7 +45,7 @@ namespace final_budget_expense.Controllers
             BudgetRecordViewModel budgetRecord = new BudgetRecordViewModel();
             int monthVal = 0;
             int yearVal = 0;
-            if (String.IsNullOrEmpty(month) && year == null && id == null)
+            if (String.IsNullOrEmpty(month) && year == null || id == null)
             {
                 monthVal = (int)DateTime.Now.Month;
                 yearVal = (int)DateTime.Now.Year;
