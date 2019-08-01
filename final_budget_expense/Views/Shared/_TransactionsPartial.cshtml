@@ -48,13 +48,13 @@
     `@if (Model.User != null)
     {
 <th>
-    Total:$@calcTotal() <button onclick="location.href='@Url.Action(" Home", "Home" , Model.User.UserID)'" id="goBackButton" type="button">Go Back</button>
+    Total:$@calcTotal() <button onclick="location.href='@Url.Action("Home", "Home", new {id = Model.User.UserID})'" id="goBackButton" type="button">Go Back</button>
 </th>
     }
     else
     {
 <th>
-    Total: $@calcTotal() <button onclick="location.href='@Url.Action(" Home", "Home" )'" id="goBackButton" type="button">Go Back</button>
+    Total: $@calcTotal() <button onclick="location.href='@Url.Action("Home", "Home" )'" id="goBackButton" type="button">Go Back</button>
 </th>
     }
         

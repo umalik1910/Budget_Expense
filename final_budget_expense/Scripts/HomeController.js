@@ -198,14 +198,3 @@ $(document).ready("#monthOptions").change(function () {
             }
         });
     }); 
- /*$("#goBackButton").click(function () {
-    var id = $("#user_id").text();
-    var url = '@Html.Raw(Url.Action("Home/Home", new { id = @Model.User.UserID }))';
-    var url2 = '@Html.Raw(Url.Action("Home/Home"))';
-    if (id != null) {
-      window.location.href = url;
- }
-   else {
-       window.location.href = url2;
-   }
-});*/
