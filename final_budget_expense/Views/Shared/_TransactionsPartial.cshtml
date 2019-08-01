@@ -7,9 +7,9 @@
     <p id="user_id">@Model.User.UserID</p>
 }
 <div id="tableBody">
-    <table class="table">
-        @Html.DropDownListFor(x => Model.SelectedMonth, new SelectList(Model.Months), htmlAttributes: new { @id = "monthOptions" })
-        @Html.DropDownListFor(x => Model.SelectedYear, new SelectList(Model.Years), htmlAttributes: new { @id = "yearOptions" })
+    @Html.DropDownListFor(x => Model.SelectedMonth, new SelectList(Model.Months), htmlAttributes: new { @id = "monthOptions" })
+    @Html.DropDownListFor(x => Model.SelectedYear, new SelectList(Model.Years), htmlAttributes: new { @id = "yearOptions" })
+    <table class="table table-bordered">
         <tr>
             <th>
                 Date
@@ -42,19 +42,20 @@
                 </td>
             </tr>
         }
-            @if (Model.User != null)
-            {
-                <th>
-                    Total: $@calcTotal()  <button onclick="location.href='@Url.Action("Home", "Home", new { id = Model.User.UserID })'" id="goBackButton" type="button">Go Back</button>
-                </th>
-            }
-            else
-            {
-                <th>
-                    Total: $@calcTotal()  <button onclick="location.href='@Url.Action("Home", "Home")'" id="goBackButton" type="button">Go Back</button>
-                </th>
-            }
     </table>
+        @if (Model.User != null)
+     {
+    <th>
+        Total: $@calcTotal()  <button onclick="location.href='@Url.Action(" Home", "Home" , new { id=Model.User.UserID })'" id="goBackButton" type="button">Go Back</button>
+    </th>
+     }
+     else
+     {
+             <th>
+                 Total: $@calcTotal()  <button onclick="location.href='@Url.Action("Home", "Home")'" id="goBackButton" type="button">Go Back</button>
+             </th>
+     } 
+    
 </div>
 
 @functions
