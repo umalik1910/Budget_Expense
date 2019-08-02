@@ -71,53 +71,6 @@ namespace final_budget_expense.Controllers
              
             return PartialView("_TransactionsPartial", budgetRecord);
         }
-
-            /* public List<BudgetRecord> GetFilteredRecords(int month, int? year, int? userId)
-            {
-                List<BudgetRecord> budgetRecord = new List<BudgetRecord>();
-
-                if (DB.BudgetRecords.Any(x => x.DateOfTrans.Year == year))
-                {
-                    var firstMonth = 0;
-                    try
-                    {
-                        firstMonth = DB.BudgetRecords.Where(x => x.DateOfTrans.Year == year && x.UserID == userId).First().DateOfTrans.Month;
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine("Exception caught.", e);
-                    }
-
-                    if (firstMonth == month)
-                    {
-
-                        budgetRecord = DB.BudgetRecords.Where(x => x.DateOfTrans.Month == month && x.DateOfTrans.Year == year && x.UserID == userId).ToList();
-                    }
-                    else
-                    {
-
-                        if (userId == 0)
-                        {
-                            budgetRecord = DB.BudgetRecords.Where(x => x.DateOfTrans.Year == year).ToList();
-                        }
-                        else
-                        {
-
-                          if (one != 1)
-                          {
-                              budgetRecord = DB.BudgetRecords.Where(x => x.DateOfTrans.Year == year && x.DateOfTrans.Month == firstMonth && x.UserID == userId).ToList();
-                              one = 1;
-                          }
-                          else
-                            budgetRecord = DB.BudgetRecords.Where(x => x.DateOfTrans.Year == year && x.DateOfTrans.Month == month && x.UserID == userId).ToList();
-                        }
-
-                  }
-                }           
-
-                return budgetRecord;
-            } */
-
         public List<BudgetRecord> GetFilteredRecords(int? month, int? year, int? userId)
         {
             List<BudgetRecord> budgetRecord = new List<BudgetRecord>();
