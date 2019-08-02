@@ -11,30 +11,28 @@ namespace final_budget_expense.Controllers
 {
     public class BudgetExpenseController : Controller
     {
-       BudgetExpenseEntities DB = new BudgetExpenseEntities();
-       BudgetRecordViewModel VM = new BudgetRecordViewModel();
-
+        BudgetExpenseEntities DB = new BudgetExpenseEntities();
+        BudgetRecordViewModel VM = new BudgetRecordViewModel();
+        //public static int one = 0;
         public ActionResult Index(string month, int? year, int id)
         {
-            int monthVal = 0;
             int yearVal = 0;
+            int monthVal = 0;
             int userID = DB.UserInfoes.Single(x => x.UserID == id).UserID;
             VM.User = DB.UserInfoes.Single(x => x.UserID == id);
             if (String.IsNullOrEmpty(month) && year == null)
             {
-              monthVal  = (int)DateTime.Now.Month;
-              yearVal = (int)DateTime.Now.Year;
-              VM.Records = GetFilteredRecords(monthVal, yearVal, userID);
+                yearVal = (int)DateTime.Now.Year;
+                VM.Records = GetFilteredRecords(monthVal, yearVal, userID);
             }
             else
             {
                 VM.Records = GetFilteredRecords(Convert.ToInt32(month), year, userID);
 
             }
-            
+
             VM.Years = GetYears(userID);
             VM.Months = GetMonthsByYear(yearVal, userID);
-            
             return View(VM);
         }
 
@@ -47,7 +45,6 @@ namespace final_budget_expense.Controllers
             int yearVal = 0;
             if (String.IsNullOrEmpty(month) && year == null || id == null)
             {
-                monthVal = (int)DateTime.Now.Month;
                 yearVal = (int)DateTime.Now.Year;
                 budgetRecord.Records = GetFilteredRecords(monthVal, yearVal, 0);
                 budgetRecord.Years = GetYears(0);
@@ -67,44 +64,82 @@ namespace final_budget_expense.Controllers
             }
 
 
-            if(id != null)
+            if (id != null)
             {
                 budgetRecord.User = DB.UserInfoes.Single(x => x.UserID == id);
             }
-            
+             
             return PartialView("_TransactionsPartial", budgetRecord);
         }
 
-        public List<BudgetRecord> GetFilteredRecords(int month, int? year, int? userId)
-        {
-            List<BudgetRecord> budgetRecord = new List<BudgetRecord>();
-            
-            if (DB.BudgetRecords.Any(x => x.DateOfTrans.Year == year))
+            /* public List<BudgetRecord> GetFilteredRecords(int month, int? year, int? userId)
             {
-               
-                if (DB.BudgetRecords.Where(y => y.DateOfTrans.Year == year && y.UserID == userId).Any(x => x.DateOfTrans.Month == month))
+                List<BudgetRecord> budgetRecord = new List<BudgetRecord>();
+
+                if (DB.BudgetRecords.Any(x => x.DateOfTrans.Year == year))
                 {
-                    budgetRecord = DB.BudgetRecords.Where(x => x.DateOfTrans.Month == month && x.DateOfTrans.Year == year && x.UserID == userId).ToList();
-                }               
-                else
-               {
-                    
-                    if (userId == 0)
+                    var firstMonth = 0;
+                    try
                     {
-                        budgetRecord = DB.BudgetRecords.Where(x => x.DateOfTrans.Year == year).ToList();
+                        firstMonth = DB.BudgetRecords.Where(x => x.DateOfTrans.Year == year && x.UserID == userId).First().DateOfTrans.Month;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Exception caught.", e);
+                    }
+
+                    if (firstMonth == month)
+                    {
+
+                        budgetRecord = DB.BudgetRecords.Where(x => x.DateOfTrans.Month == month && x.DateOfTrans.Year == year && x.UserID == userId).ToList();
                     }
                     else
                     {
-                        var firstMonth = DB.BudgetRecords.Where(x => x.DateOfTrans.Year == year && x.UserID == userId).First().DateOfTrans.Month;
-                        budgetRecord = DB.BudgetRecords.Where(x => x.DateOfTrans.Year == year && x.DateOfTrans.Month == firstMonth && x.UserID == userId).ToList();
-                    }
-                    
-              }
-            }           
-            
+
+                        if (userId == 0)
+                        {
+                            budgetRecord = DB.BudgetRecords.Where(x => x.DateOfTrans.Year == year).ToList();
+                        }
+                        else
+                        {
+
+                          if (one != 1)
+                          {
+                              budgetRecord = DB.BudgetRecords.Where(x => x.DateOfTrans.Year == year && x.DateOfTrans.Month == firstMonth && x.UserID == userId).ToList();
+                              one = 1;
+                          }
+                          else
+                            budgetRecord = DB.BudgetRecords.Where(x => x.DateOfTrans.Year == year && x.DateOfTrans.Month == month && x.UserID == userId).ToList();
+                        }
+
+                  }
+                }           
+
+                return budgetRecord;
+            } */
+
+        public List<BudgetRecord> GetFilteredRecords(int? month, int? year, int? userId)
+        {
+            List<BudgetRecord> budgetRecord = new List<BudgetRecord>();
+            var userRecords = DB.BudgetRecords.Where(y => y.DateOfTrans.Year == year && y.UserID == userId);
+            var firstMonth = userRecords.FirstOrDefault()?.DateOfTrans.Month ?? 1;
+
+            if(month == 0)
+            {
+                month = firstMonth;
+            }
+
+            if (userRecords.Any(x => x.DateOfTrans.Year == year && x.DateOfTrans.Month == month) && userId != 0)
+            {
+                budgetRecord = userRecords.Where(x => x.DateOfTrans.Month == month).ToList();
+            }
+            else
+            {
+                budgetRecord = userRecords.Where(x => x.DateOfTrans.Month == firstMonth).ToList();
+            }
+
             return budgetRecord;
         }
-   
         public List<int> GetYears(int? userID)
         {
             var records = DB.BudgetRecords.Where(x => x.UserID == userID).DistinctBy(y => y.DateOfTrans.Year).ToList();
