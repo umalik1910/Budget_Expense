@@ -81,16 +81,25 @@ namespace final_budget_expense.Controllers
             
             if (DB.BudgetRecords.Any(x => x.DateOfTrans.Year == year))
             {
+               
                 if (DB.BudgetRecords.Where(y => y.DateOfTrans.Year == year && y.UserID == userId).Any(x => x.DateOfTrans.Month == month))
                 {
                     budgetRecord = DB.BudgetRecords.Where(x => x.DateOfTrans.Month == month && x.DateOfTrans.Year == year && x.UserID == userId).ToList();
                 }               
                 else
-                {
-                    var firstMonth = DB.BudgetRecords.Where(x => x.DateOfTrans.Year == year).First().DateOfTrans.Month;
+               {
                     
-                    budgetRecord = DB.BudgetRecords.Where(x => x.DateOfTrans.Year == year && x.DateOfTrans.Month == firstMonth).ToList();
-                }
+                    if (userId == 0)
+                    {
+                        budgetRecord = DB.BudgetRecords.Where(x => x.DateOfTrans.Year == year).ToList();
+                    }
+                    else
+                    {
+                        var firstMonth = DB.BudgetRecords.Where(x => x.DateOfTrans.Year == year && x.UserID == userId).First().DateOfTrans.Month;
+                        budgetRecord = DB.BudgetRecords.Where(x => x.DateOfTrans.Year == year && x.DateOfTrans.Month == firstMonth && x.UserID == userId).ToList();
+                    }
+                    
+              }
             }           
             
             return budgetRecord;

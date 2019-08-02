@@ -103,7 +103,7 @@ $("#submit_button").click(function () {
     if (document.getElementById("amount_input").value < 0) {
 
         alert("Amount Value cannot be negative!");
-    }
+    }  
     else {
 
         $.ajax({
