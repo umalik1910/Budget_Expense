@@ -69,7 +69,6 @@ namespace budget_expense.Controllers
 
                     DB.BudgetRecords.Add(budget);
                     DB.SaveChanges();
-                    //RedirectToAction("Home");
                 }
             }
             catch (Exception e)
@@ -108,7 +107,7 @@ namespace budget_expense.Controllers
 
                         DB.UserInfoes.Add(userInfo);
                         DB.SaveChanges();
-                        //RedirectToAction("Home");
+
                     }
                 }
                 catch (Exception e)
@@ -134,8 +133,6 @@ namespace budget_expense.Controllers
                 {
                     if (user.UserName == username_input && user.Password == password_input)
                     {
-                        //return Json("Success");
-                        //ViewBag.UserId = user.UserID;
                         return Json(new { redirectTo = Url.Action("Home", "Home", new { id = user.UserID }) });
                     }
                     else
