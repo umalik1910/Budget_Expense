@@ -79,7 +79,7 @@
                 <div>
                     <button id="logout_button" type="button" value="Logout" onclick="location.href='@Url.Action("SignIn", "Home")'; logout();">Logout</button>
                     <input id="submit_button" type="submit" value="Submit" />
-                    <button id="reset_button" type="reset" value="Reset">Clear</button>
+                    <button id="reset_button" value="Reset">Clear</button>
                     <button id="history" onclick="location.href='@Url.Action("Index", "BudgetExpense", new {id = Model.UserID })'"> History</button>
                 </div>
             </div>

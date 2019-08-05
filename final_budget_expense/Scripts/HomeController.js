@@ -36,8 +36,7 @@ function callCurrentDate() {
     var input = document.getElementById("date_selection");
     if (input != null) {
         input.setAttribute("max", showCurrentDate());
-    }
-    //input.max = showCurrentDate();  
+    } 
 };
 
 function checkPassword(pass1, pass2) {
@@ -226,3 +225,8 @@ inputBox.addEventListener("keydown", function (e) {
 function logout() {
     alert("You have been logged out"); 
 }
+$("#reset_button").click(function () { 
+    $("#amount_input").val('');
+    $("#date_selection").val('');
+    $(".description").val('');
+});
