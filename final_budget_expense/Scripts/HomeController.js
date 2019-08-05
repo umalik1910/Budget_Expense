@@ -103,7 +103,15 @@ $("#submit_button").click(function () {
     if (document.getElementById("amount_input").value < 0) {
 
         alert("Amount Value cannot be negative!");
-    }  
+    }
+   else if (document.getElementById("date_selection").value == "" || document.getElementById("amount_input").value == "")
+    {
+        alert("One of the inputs are left blank!")
+    }
+    else if ($('.description').val() == "")
+    {
+        alert("One of the inputs are left blank!")
+    }
     else {
 
         $.ajax({
@@ -214,3 +222,4 @@ inputBox.addEventListener("keydown", function (e) {
         e.preventDefault();
     }
 });
+
