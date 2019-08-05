@@ -1,89 +1,91 @@
 ﻿@model final_budget_expense.Models.UserInfo
 @{ ViewData["Title"] = "Home";}
 
-<div  id="body">
-    <p id="user_id">  @Model.UserID </p>
-    <div>
-        <div>
-            <div class="col-md-6 col-md-push-3">
+        <div id="body">
+            <div id="top_right_placement">
+                <button id="logout_button" type="button" value="Logout" onclick="location.href='@Url.Action("SignIn", "Home")'; logout();">Logout</button>
+            </div>
+            <p id="user_id">  @Model.UserID </p>
+            <div>
                 <div>
-                    <row>
-                        <label>
-                            Date of Transaction
-                        </label>
-                    </row>
-                    <form>
-                        <row>
-                            <label>
-                                Type of Transaction
-                            </label>
-                        </row>
-                        <div class="expense_type" style="display:none">
+                    <div class="col-md-6 col-md-push-3">
+                        <div>
                             <row>
                                 <label>
-                                    Category of Expense
+                                    Date of Transaction
+                                </label>
+                            </row>
+                            <form>
+                                <row>
+                                    <label>
+                                        Type of Transaction
+                                    </label>
+                                </row>
+                                <div class="expense_type" style="display:none">
+                                    <row>
+                                        <label>
+                                            Category of Expense
+                                        </label>
+                                    </row>
+                                </div>
+
+                            </form>
+                            <row>
+                                <div>
+                                    <label>
+                                        Description
+                                    </label>
+                                </div>
+                            </row>
+                            <row>
+                                <label id="about_label">
+                                    Amount
                                 </label>
                             </row>
                         </div>
+                    </div>
 
-                    </form>
-                    <row>
+                    <div class="col-md-6">
                         <div>
-                            <label>
-                                Description
-                            </label>
+                            <row><input id="date_selection" type="date" onkeydown="return false;" required></row>
                         </div>
-                    </row>
-                    <row>
-                        <label id="about_label">
-                            Amount
-                        </label>
-                    </row>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div>
-                    <row><input id="date_selection" type="date" onkeydown="return false;" required></row>
-                </div>
-                <div>
-                    <row>
-                        <select id="budget_name" onchange="showCategories()" name="transaction type" required>
-                            <option value="Income">Income</option>
-                            <option value="Expense">Expense</option>
-                        </select>
-                    </row>
-                </div>
-                <row>
-                    <select class="expense_type" style="display:none" name="category of expense">
-                        <option value="shopping">Shopping</option>
-                        <option value="travel">Travel</option>
-                        <option value="food and beverages">Food and Beverages</option>
-                        <option value="other"> Other </option>
-                    </select>
-                </row>
-                <div>
-                    <row>
-                        <textarea class="description" placeholder=" Please input description of transaction" required>
+                        <div>
+                            <row>
+                                <select id="budget_name" onchange="showCategories()" name="transaction type" required>
+                                    <option value="Income">Income</option>
+                                    <option value="Expense">Expense</option>
+                                </select>
+                            </row>
+                        </div>
+                        <row>
+                            <select class="expense_type" style="display:none" name="category of expense">
+                                <option value="shopping">Shopping</option>
+                                <option value="travel">Travel</option>
+                                <option value="food and beverages">Food and Beverages</option>
+                                <option value="other"> Other </option>
+                            </select>
+                        </row>
+                        <div>
+                            <row>
+                                <textarea class="description" placeholder=" Please input description of transaction" required>
 </textarea>
-                    </row>
-                </div>
-                <div>
-                    <row>
-                        <span id="dollar_sign">
-                            <span style='color:green'>$</span>
-                        </span>
-                        <input id="amount_input" type="number" name="Numerical amount" required />
-                    </row>
-                </div>
-                <div>
-                    <button id="logout_button" type="button" value="Logout" onclick="location.href='@Url.Action("SignIn", "Home")'; logout();">Logout</button>
-                    <input id="submit_button" type="submit" value="Submit" />
-                    <button id="reset_button" value="Reset">Clear</button>
-                    <button id="history" onclick="location.href='@Url.Action("Index", "BudgetExpense", new {id = Model.UserID })'"> History</button>
+                            </row>
+                        </div>
+                        <div>
+                            <row>
+                                <span id="dollar_sign">
+                                    <span style='color:green'>$</span>
+                                </span>
+                                <input id="amount_input" type="number" name="Numerical amount" required />
+                            </row>
+                        </div>
+                        <div>
+                            <input id="submit_button" type="submit" value="Submit" />
+                            <button id="reset_button" value="Reset">Clear</button>
+                            <button id="history" onclick="location.href='@Url.Action("Index", "BudgetExpense", new {id = Model.UserID })'"> History</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
