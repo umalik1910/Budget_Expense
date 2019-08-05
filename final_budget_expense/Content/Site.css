@@ -1,15 +1,15 @@
 ﻿*{
-    color: grey; 
+    color: black; 
 }
 #body{
-    border: thick dotted grey;
+    border: thick dotted black;
     margin-right: 10%;
     margin-left: 10%;
     margin-top: 10%;
     margin-bottom: 10%;
     padding-bottom: 20%; 
     padding-top: 5%;
-    background-color: lightyellow; 
+    background-color: white; 
 }
 #submit_button {
     background-color: white;
@@ -142,5 +142,5 @@ label{
     vertical-align: top;
 }
 #background-color{
-    background-color: lightgray; 
+    background-color: green; 
 }
