@@ -1,91 +1,90 @@
 ﻿@model final_budget_expense.Models.UserInfo
 @{ ViewData["Title"] = "Home";}
 
-        <div class="container-fluid" id="body" >
-            <div id="top_right_placement">
-                <button id="logout_button" type="button" value="Logout" onclick="location.href='@Url.Action("SignIn", "Home")'; logout();">Logout</button>
-            </div>
-            <p id="user_id">  @Model.UserID </p>
-            <div>
-                <div>
-                    <div class="col-md-6 col-md-push-3">
-                        <div>
+    <div id="body">
+        <div style="padding-right:1%">
+            <a class="pull-right" style="padding-top: .7%;" onclick="location.href='@Url.Action("SignIn", "Home")'; logout();">Logout</a>
+            <button style="width: 70.325px; margin-top: .5%" class="pull-right history-btn" id="history" onclick="location.href='@Url.Action("Index", "BudgetExpense", new {id = Model.UserID })'"> History</button>
+        </div>
+        <p id="user_id">  @Model.UserID </p>
+        <div id="transactionbody">
+            <div class="col-md-6 col-md-push-4">
+                <div style="padding-top: 1%">
+                    <row>
+                        <label>
+                            Date of Transaction
+                        </label>
+                    </row>
+                    <form>
+                        <row>
+                            <label>
+                                Type of Transaction
+                            </label>
+                        </row>
+                        <div class="expense_type" style="display:none">
                             <row>
                                 <label>
-                                    Date of Transaction
-                                </label>
-                            </row>
-                            <form>
-                                <row>
-                                    <label>
-                                        Type of Transaction
-                                    </label>
-                                </row>
-                                <div class="expense_type" style="display:none">
-                                    <row>
-                                        <label>
-                                            Category of Expense
-                                        </label>
-                                    </row>
-                                </div>
-
-                            </form>
-                            <row>
-                                <div>
-                                    <label>
-                                        Description
-                                    </label>
-                                </div>
-                            </row>
-                            <row>
-                                <label id="about_label">
-                                    Amount
+                                    Category of Expense
                                 </label>
                             </row>
                         </div>
-                    </div>
+                    </form>
+                    <row>
+                        <div style="padding-top: 1%">
+                            <label>
+                                Description
+                            </label>
+                        </div>
+                    </row>
+                    <row style="padding-top: 4%">
+                        <label id="about_label">
+                            Amount
+                        </label>
+                    </row>
+                </div>
+            </div>
 
-                    <div class="col-md-6">
-                        <div>
-                            <row><input id="date_selection" type="date" onkeydown="return false;" required></row>
-                        </div>
-                        <div>
-                            <row>
-                                <select id="budget_name" onchange="showCategories()" name="transaction type" required>
-                                    <option value="Income">Income</option>
-                                    <option value="Expense">Expense</option>
-                                </select>
-                            </row>
-                        </div>
-                        <row>
-                            <select class="expense_type" style="display:none" name="category of expense">
-                                <option value="shopping">Shopping</option>
-                                <option value="travel">Travel</option>
-                                <option value="food and beverages">Food and Beverages</option>
-                                <option value="other"> Other </option>
-                            </select>
-                        </row>
-                        <div>
-                            <row>
-                                <textarea class="description" placeholder=" Please input description of transaction" required>
+            <div class="col-md-6">
+                <div>
+                    <row><input style="width: 174px;" id="date_selection" type="date" onkeydown="return false;" required></row>
+                </div>
+                <div style="padding-top: 1%">
+                    <row>
+                        <select style="width: 174px;" id="budget_name" onchange="showCategories()" name="transaction type" required>
+                            <option value="Income">Income</option>
+                            <option value="Expense">Expense</option>
+                        </select>
+                    </row>
+                </div>
+                <div style="padding-top: 1%">
+                    <row>
+                        <select class="expense_type" style="display:none; width: 174px;" name="category of expense">
+                            <option value="shopping">Shopping</option>
+                            <option value="travel">Travel</option>
+                            <option value="food and beverages">Food and Beverages</option>
+                            <option value="other"> Other </option>
+                        </select>
+                    </row>
+                </div>
+                <div style="padding-top: 1%">
+                    <row>
+                        <textarea style="width: 174px;" class="description" placeholder="Please input description of transaction" required>
 </textarea>
-                            </row>
-                        </div>
-                        <div>
-                            <row>
-                                <span id="dollar_sign">
-                                    <span style='color:green'>$</span>
-                                </span>
-                                <input id="amount_input" type="number" name="Numerical amount" required />
-                            </row>
-                        </div>
-                        <div>
-                            <input id="submit_button" type="submit" value="Submit" />
-                            <button id="reset_button" value="Reset">Clear</button>
-                            <button id="history" onclick="location.href='@Url.Action("Index", "BudgetExpense", new {id = Model.UserID })'"> History</button>
-                        </div>
-                    </div>
+                    </row>
+                </div>
+                <div style="padding-top: 1%">
+                    <row>
+                        <span style=" color: green" class="input-group-text">$</span>
+                        <input style="width: 164px;" oninput="validate(this)" id="amount_input" type="number" name="Numerical amount"/>
+                    </row>
+                </div>
+                <div style="padding-top: 1%">
+                    <input style="width: 13%" id="submit_button" type="submit" value="Submit" />
+                    <span style="padding-left: 3.5%;">
+                        <button style="width: 13%" id="reset_button" value="Reset">Clear</button>
+                    </span>
                 </div>
             </div>
         </div>
+    </div>
 

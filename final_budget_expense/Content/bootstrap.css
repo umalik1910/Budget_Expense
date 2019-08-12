@@ -2370,9 +2370,10 @@ th {
   text-align: left;
 }
 .table {
+  margin-top: 1.5%;
   width: 100%;
   max-width: 100%;
-  margin-bottom: 20px;
+ /* margin-bottom: 20px; */
 }
 .table > thead > tr > th,
 .table > tbody > tr > th,
@@ -2383,12 +2384,12 @@ th {
   padding: 8px;
   line-height: 1.42857143;
   vertical-align: top;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid black;
 }
 .table > thead > tr > th {
-  vertical-align: bottom;
-  border-bottom: 2px solid #ddd;
-}
+        vertical-align: bottom;
+        border-bottom: 2px solid #ddd;
+    }
 .table > caption + thead > tr:first-child > th,
 .table > colgroup + thead > tr:first-child > th,
 .table > thead:first-child > tr:first-child > th,
@@ -2397,9 +2398,9 @@ th {
 .table > thead:first-child > tr:first-child > td {
   border-top: 0;
 }
-.table > tbody + tbody {
-  border-top: 2px solid #ddd;
-}
+    .table > tbody + tbody {
+        border-top: 2px solid #ddd;
+    }
 .table .table {
   background-color: #fff;
 }
@@ -3261,7 +3262,7 @@ fieldset[disabled] .btn-primary.focus {
 }
 .btn-primary .badge {
   color: #337ab7;
-  background-color: #fff;
+  background-color: green;
 }
 .btn-success {
   color: #fff;
@@ -4986,18 +4987,21 @@ a.label:focus {
   background-color: #c9302c;
 }
 .badge {
-  display: inline-block;
-  min-width: 10px;
-  padding: 3px 7px;
-  font-size: 12px;
-  font-weight: bold;
-  line-height: 1;
-  color: #fff;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  background-color: #777777;
-  border-radius: 10px;
+    display: inline-block;
+    min-width: 10px;
+    width: 53.700%;
+    height: 20%;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1;
+    color: green;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: white;
+    /*border-radius: 10px;*/
+    border: 2px solid green;
 }
 .badge:empty {
   display: none;

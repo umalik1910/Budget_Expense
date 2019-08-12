@@ -2,15 +2,29 @@
     color: black; 
 }
 #body{
-    border: thick dotted black;
+    border: thick solid black;
     margin-right: 10%;
     margin-left: 10%;
     margin-top: 10%;
     margin-bottom: 10%;
     padding-bottom: 20%; 
-    padding-top: 5%;
-    background-color: white; 
+   
+    background-color: lightyellow; 
 }
+
+#transactionbody {
+    padding-top: 5%;
+}
+#signInBody {
+    border: thick solid black;
+    margin-right: 35%;
+    margin-left: 35%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding-bottom: 16%;
+    padding-top: 5%;
+    background-color: lightyellow;
+} 
 #submit_button {
     background-color: white;
     color: green;
@@ -38,7 +52,7 @@ input[type=date]::-webkit-inner-spin-button {
     display: none;
 }
 label{
-    color: grey;
+    color: black;
 }
 #about_label{
     padding-top: 6%;
@@ -89,6 +103,11 @@ label{
     border: 2px solid green;
     text-align: center;
 }
+#create_account_submit_button:hover {
+        background-color: green;
+        color: white;
+        text-align: center;
+ }
 #user_id {
     visibility: hidden;
 }
@@ -115,32 +134,62 @@ label{
     text-align: center;
 }
 #tableBody {
-    border: thick dotted grey;
+    border: thick solid black;
     margin-right: 10%;
     margin-left: 10%;
     margin-top: 10%;
     margin-bottom: 10%;
     padding-bottom: 20%;
-    padding-top: 2%;
     background-color: lightyellow;
 }
 #rightAlign {
     text-align: right;
 }
-#logout_button {
-    background-color: white;
-    color: black;
-    border: 2px solid black;
-}
-#logout_button:hover {
-    background-color: black;
-    color: white;
-    text-align: center;
-}
+
 #top_right_placement {
-    text-align: right;
-    vertical-align: top;
+    position: relative;
+    top: 0;
+    right: 0;
 }
-#background-color{
-    background-color: green; 
+#background-image {
+    background-image: url('https://www.eventmanagerblog.com/wp-content/uploads/2018/09/510x322-h2-images-calculator-color-code-f4eab9.jpg');
+}
+
+#buttonPushRight{
+    padding-left: 2.5%;
+}
+
+#pushUp{
+    padding-bottom: 1%;
+}
+#usernamePushDown{
+    padding-top: 1%;
+}
+#confirmpswPushDown{
+    padding-top: 2%;
+}
+
+.history-btn{
+    margin-right: 10px;
+}
+#monthOptions{
+    margin-top: .5%;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+#neg_total {
+    background-color: white;
+    color: red;
+    border: 2px solid red;
+    text-align: center;
+    margin-right: .5%;
+    margin-bottom: 1%;
+}
+#pos_total {
+    background-color: white;
+    color: green;
+    border: 2px solid green;
+    text-align: center;
+    margin-right: .5%;
+    margin-bottom: 1%;
 }

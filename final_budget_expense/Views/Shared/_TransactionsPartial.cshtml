@@ -7,29 +7,32 @@
     <p id="user_id">@Model.User.UserID</p>
 }
 <div id="tableBody">
-    `@if (Model.User != null)
+    @if (Model.Months.Count > 0 && Model.Years.Count() > 0)
     {
-        <div id="top_right_placement"><button onclick="location.href='@Url.Action("Home", "Home", new {id = Model.User.UserID})'" id="goBackButton" type="button">Go Back</button></div>
+        @Html.DropDownListFor(x => Model.SelectedMonth, new SelectList(Model.Months), htmlAttributes: new { @id = "monthOptions" })
+        @Html.DropDownListFor(x => Model.SelectedYear, new SelectList(Model.Years), htmlAttributes: new { @id = "yearOptions" })
     }
-    else
-    {
-        <div id="top_right_placement"><button onclick="location.href='@Url.Action("Home", "Home" )'" id="goBackButton" type="button">Go Back</button></div>
-    }
-
-    @Html.DropDownListFor(x => Model.SelectedMonth, new SelectList(Model.Months), htmlAttributes: new { @id = "monthOptions" })
-    @Html.DropDownListFor(x => Model.SelectedYear, new SelectList(Model.Years), htmlAttributes: new { @id = "yearOptions" })
-    <table class="table table-bordered">
+        <a class="pull-right" style="padding-top: .7%; padding-right:1%" onclick="location.href='@Url.Action("SignIn", "Home")'; logout();">Logout</a>
+        @if (Model.User != null)
+        {
+            <button class="pull-right" style="margin-top: .5%; margin-right: 10px" onclick="location.href='@Url.Action("Home", "Home", new {id = Model.User.UserID})'" id="goBackButton" type="button">Go Back</button>
+        }
+        else
+        {
+            <button class="pull-right" style="margin-top: .5%; margin-right: 10px;" onclick="location.href='@Url.Action("Home", "Home" )'" id="goBackButton" type="button">Go Back</button>
+        }
+    <table class="table table-bordered"  style="table-layout: fixed; word-wrap: break-word;">
         <tr>
-            <th>
+            <th class="text-center">
                 Date
             </th>
-            <th>
+            <th class="text-center">
                 Type
             </th>
-            <th>
+            <th class="text-center">
                 Description
             </th>
-            <th>
+            <th class="text-center">
                 Amount
             </th>
         </tr>
@@ -37,49 +40,73 @@
         @foreach (var item in Model.Records)
         {
             <tr>
-                <td>
+                <td class="text-center">
                     @Html.Raw(item.DateOfTrans.ToString("d"))
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.TypeOfTrans)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.TransDescription)
                 </td>
-                <td>
-                    $@Html.DisplayFor(modelItem => item.Amount)
+                <td class="text-center">
+                    <!--- $Html.DisplayFor(modelItem => item.Amount) -->
+                    
+                    @if(item.Amount == 0)
+                    {
+                        @item.Amount.ToString("$0.00")
+                    }
+                    else
+                    {
+                        @item.Amount.ToString("$#.00")
+                    }
+                    
                 </td>
             </tr>
         }
     </table>
     <div id="rightAlign">
-        <th>
-            Total:$@calcTotal()
-        </th>
+        @if (Convert.ToDouble(calcTotal()) > 0)
+        {
+            <th>
+                <button style="margin-top: 1%"id="pos_total" button" disabled>Total: $@calcTotal()</button>
+            </th>
+        }
+        else 
+        {
+            <th>
+                <button style="margin-top: 1%"id="neg_total" button" disabled>Total: $@calcTotal()</button>
+            </th>
+        }
     </div>
 
-@functions
+        @functions
     {
 
-    public double calcTotal()
-    {
-        double total = 0;
-        foreach (var item in Model.Records)
-        {
+            public string calcTotal()
+            {
+                double total = 0;
+                foreach (var item in Model.Records)
+                {
 
-            double amount = 0;
-            if (item.TypeOfTrans == "Expense")
-            {
-                amount = item.Amount * -1;
-                total += amount;
+                    double amount = 0;
+                    if (item.TypeOfTrans == "Expense")
+                    {
+                        amount = item.Amount * -1;
+                        total += amount;
+                    }
+                    else if (item.TypeOfTrans == "Income")
+                    {
+                        amount = item.Amount;
+                        total += amount;
+                    }
+                }
+                if (total == 0)
+                {
+                    return total.ToString("0.00");
+                }
+                else
+                return total.ToString("#.00");
             }
-            else if (item.TypeOfTrans == "Income")
-            {
-                amount = item.Amount;
-                total += amount;
-            }
+
         }
-        return total;
-    }
-
-}
